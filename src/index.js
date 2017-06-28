@@ -1,5 +1,7 @@
-'use strict';
-
-module.exports = function () {
-    return true;
-};
+/**
+ * Returns a very important number
+ * @return {number}
+ */
+export default function mzML() {
+    return 42;
+}

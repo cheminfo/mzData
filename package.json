@@ -2,36 +2,42 @@
   "name": "mzMLjs",
   "version": "0.0.1",
   "description": "Read and explore mzML files",
-  "keywords": [
-    "mzML",
-    "data",
-    "format"
+  "main": "lib/index.js",
+  "module": "src/index.js",
+  "files": [
+    "lib",
+    "src"
   ],
-  "author": "Miguel Asencio <maasencioh@gmail.com> (https://github.com/maasencioh)",
-  "repository": "cheminfo-js/mzMLjs",
+  "scripts": {
+    "eslint": "eslint src",
+    "eslint-fix": "npm run eslint -- --fix",
+    "prepublish": "rollup -c",
+    "test": "run-s testonly eslint",
+    "test-travis": "eslint src && jest --coverage && codecov",
+    "testonly": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cheminfo-js/mzMLjs.git"
+  },
+  "keywords": [],
+  "author": "Miguel Asencio",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/cheminfo-js/mzMLjs/issues"
   },
-  "homepage": "https://github.com/cheminfo-js/mzMLjs",
-  "license": "MIT",
-  "main": "./src/index.js",
-  "scripts": {
-    "eslint": "eslint src test",
-    "eslint-fix": "npm run eslint -- --fix",
-    "test": "npm run test-mocha && npm run eslint",
-    "test-mocha": "mocha --require should --reporter mocha-better-spec-reporter --recursive",
-    "test-cov": "istanbul cover node_modules/.bin/_mocha -- --require should --reporter dot --recursive",
-    "test-travis": "istanbul cover node_modules/.bin/_mocha --report lcovonly -- --require should --reporter dot --recursive",
-    "build": "cheminfo build"
+  "homepage": "https://github.com/cheminfo-js/mzMLjs#readme",
+  "jest": {
+    "testEnvironment": "node"
   },
   "devDependencies": {
-    "cheminfo-tools": "^1.5.0",
-    "eslint": "^3.4.0",
-    "eslint-config-cheminfo": "^1.2.0",
-    "eslint-plugin-no-only-tests": "^1.1.0",
-    "istanbul": "^0.4.4",
-    "mocha": "^3.1.2",
-    "mocha-better-spec-reporter": "^3.0.2",
-    "should": "^11.1.1"
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "codecov": "^2.2.0",
+    "eslint": "^4.1.1",
+    "eslint-config-cheminfo": "^1.8.0",
+    "eslint-plugin-no-only-tests": "^2.0.0",
+    "jest": "^20.0.4",
+    "npm-run-all": "^4.0.2",
+    "rollup": "^0.43.0"
   }
 }

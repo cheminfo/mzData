@@ -1,6 +1,6 @@
 import {mzData} from '..';
 import {readFileSync} from 'fs';
-const pathFiles = __dirname + '/files/';
+const pathFiles = __dirname + '/../../testFiles/';
 
 describe('mzData', () => {
     it('read tiny.mzData.xml', () => {

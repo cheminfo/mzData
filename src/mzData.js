@@ -1,9 +1,9 @@
 import {parser} from 'sax';
 import {decoder, mergeSeries} from './utils';
 
-const xml = parser(true, {trim: true});
-
 export function mzData(data) {
+    const xml = parser(true, {trim: true});
+
     var result = {
         times: [],
         series: {}
@@ -12,12 +12,13 @@ export function mzData(data) {
     var binaryData = {};
     var mz = [];
     var int = [];
+    var kind;
 
     xml.onopentag = (node) => {
         // eslint-disable-next-line default-case
         switch (node.name) {
             case 'mzData':
-                result.kind = 'mzData';
+                kind = 'mzData';
                 break;
             case 'cvParam':
                 if (node.attributes.name === 'TimeInMinutes') {
@@ -57,7 +58,7 @@ export function mzData(data) {
 
     xml.onerror = (err) => error.push(err);
     xml.write(data).close();
-    if (!result.kind || result.kind !== 'mzData') {
+    if (!kind || kind !== 'mzData') {
         throw new TypeError('Not a mzData file');
     }
     if (error.length > 0) {

@@ -1,6 +1,11 @@
 import {parser} from 'sax';
 import {decoder, mergeSeries} from './utils';
 
+/**
+ * Reads a mzData v1.05 file
+ * @param {ArrayBuffer} data - ArrayBuffer or any Typed Array (including Node.js' Buffer from v4) with the data
+ * @return {{times: Array<number>, series: { ms:Array<Array<number>>}}}
+ */
 export function mzData(data) {
     const xml = parser(true, {trim: true});
 

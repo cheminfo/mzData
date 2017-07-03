@@ -4,7 +4,7 @@ import {decoder, mergeSeries} from './utils';
 /**
  * Reads a mzData v1.05 file
  * @param {ArrayBuffer} data - ArrayBuffer or any Typed Array (including Node.js' Buffer from v4) with the data
- * @return {{times: Array<number>, series: { ms:Array<Array<number>>}}}
+ * @return {{times: Array<number>, series: { ms: { data:Array<Array<number>>}}}}
  */
 export function mzData(data) {
     const xml = parser(true, {trim: true});
@@ -70,6 +70,7 @@ export function mzData(data) {
         throw new Error(error);
     }
 
-    result.series.ms = mergeSeries(mz, int);
+    result.series.ms = {};
+    result.series.ms.data = mergeSeries(mz, int);
     return result;
 }

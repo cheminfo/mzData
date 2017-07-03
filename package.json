@@ -15,7 +15,7 @@
     "test": "run-s testonly eslint",
     "test-travis": "eslint src && jest --coverage && codecov",
     "testonly": "jest",
-    "build": "cheminfo build"
+    "build": "rollup -c && cheminfo build"
   },
   "repository": {
     "type": "git",

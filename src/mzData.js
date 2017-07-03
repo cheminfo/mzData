@@ -41,12 +41,15 @@ export function mzData(data) {
                 };
                 break;
             case 'data':
-                if (binaryData.serie === 'mz') {
-                    binaryData = node.attributes;
-                    binaryData.serie = 'mz';
-                } else if (binaryData.serie === 'int') {
-                    binaryData = node.attributes;
-                    binaryData.serie = 'int';
+                if (node.isSelfClosing) {
+                    if (binaryData.serie === 'mz') {
+                        mz.push([]);
+                    } else if (binaryData.serie === 'int') {
+                        int.push([]);
+                    }
+                    binaryData = {};
+                } else if (binaryData.serie) {
+                    binaryData.precision = node.attributes.precision;
                 }
                 break;
         }

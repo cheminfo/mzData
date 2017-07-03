@@ -14,7 +14,8 @@
     "prepublish": "rollup -c",
     "test": "run-s testonly eslint",
     "test-travis": "eslint src && jest --coverage && codecov",
-    "testonly": "jest"
+    "testonly": "jest",
+    "build": "cheminfo build"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "cheminfo-tools": "^1.17.1",
     "codecov": "^2.2.0",
     "eslint": "^4.1.1",
     "eslint-config-cheminfo": "^1.8.0",

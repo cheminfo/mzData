@@ -1,7 +1,1 @@
-/**
- * Returns a very important number
- * @return {number}
- */
-export default function mzML() {
-    return 42;
-}
+export {mzData} from './mzData';

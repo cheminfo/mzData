@@ -39,5 +39,9 @@
     "jest": "^20.0.4",
     "npm-run-all": "^4.0.2",
     "rollup": "^0.43.0"
+  },
+  "dependencies": {
+    "base64-js": "^1.2.1",
+    "sax": "^1.2.4"
   }
 }

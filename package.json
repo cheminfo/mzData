@@ -1,7 +1,7 @@
 {
-  "name": "mzmjs",
-  "version": "0.2.0",
-  "description": "Read and explore mzML files",
+  "name": "mzdata",
+  "version": "1.0.0",
+  "description": "Read and explore mzData v1.05 files",
   "main": "lib/index.js",
   "module": "src/index.js",
   "files": [
@@ -19,15 +19,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cheminfo-js/mzMLjs.git"
+    "url": "git+https://github.com/cheminfo-js/mzData.git"
   },
   "keywords": [],
   "author": "Miguel Asencio",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cheminfo-js/mzMLjs/issues"
+    "url": "https://github.com/cheminfo-js/mzData/issues"
   },
-  "homepage": "https://github.com/cheminfo-js/mzMLjs#readme",
+  "homepage": "https://github.com/cheminfo-js/mzData#readme",
   "jest": {
     "testEnvironment": "node"
   },
@@ -38,9 +38,9 @@
     "eslint": "^4.1.1",
     "eslint-config-cheminfo": "^1.8.0",
     "eslint-plugin-no-only-tests": "^2.0.0",
-    "jest": "^20.0.4",
+    "jest": "^21.2.1",
     "npm-run-all": "^4.0.2",
-    "rollup": "^0.43.0"
+    "rollup": "^0.50.0"
   },
   "dependencies": {
     "base64-js": "^1.2.1",

@@ -1,4 +1,4 @@
-import {mzData} from '..';
+import mzData from '..';
 import {readFileSync} from 'fs';
 const pathFiles = __dirname + '/../../testFiles/mzData/';
 

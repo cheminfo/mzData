@@ -1,3 +1,8 @@
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/cheminfo-js/mzData/compare/v0.2.0...v1.0.1) (2018-10-22)
+
+
+
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/cheminfo-js/mzMLjs/compare/v0.1.0...v0.1.1) (2017-07-03)
 

@@ -38,6 +38,7 @@
     "eslint": "^4.1.1",
     "eslint-config-cheminfo": "^1.8.0",
     "eslint-plugin-no-only-tests": "^2.0.0",
+    "esm": "^3.0.84",
     "jest": "^21.2.1",
     "npm-run-all": "^4.0.2",
     "rollup": "^0.50.0"

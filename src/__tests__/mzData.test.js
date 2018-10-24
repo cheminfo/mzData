@@ -9,7 +9,9 @@ describe('mzData', () => {
         expect(response.times).toEqual([5.8905, 5.944667]);
         expect(response.series.ms.data.length).toBe(2);
         expect(response.series.ms.data[0][0].length).toBe(1313);
+        expect(response.series.ms.data[0][1].length).toBe(1313);
         expect(response.series.ms.data[1][0].length).toBe(43);
+        expect(response.series.ms.data[1][1].length).toBe(43);
     });
 
     it('read real file', () => {

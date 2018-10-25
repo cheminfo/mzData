@@ -19,7 +19,7 @@
     "url": "git+https://github.com/cheminfo-js/mzData.git"
   },
   "keywords": [],
-  "author": "Miguel Asencio",
+  "author": "Miguel Asencio, Luc Patiny",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/cheminfo-js/mzData/issues"

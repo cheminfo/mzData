@@ -7,6 +7,11 @@ function decodeData(node) {
   let attr = node._attr;
   if (!data || !attr) return [];
   var buffer = toByteArray(data);
+
+  if (attr.endian !== 'little') {
+    throw new Error(`endian not recognized: ${attr.endian}`);
+  }
+
   switch (attr.precision) {
     case 32:
       return new Float32Array(buffer.buffer);

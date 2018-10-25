@@ -1,6 +1,6 @@
 {
   "name": "mzdata",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Read and explore mzData v1.05 files",
   "main": "src/index.js",
   "browser": {

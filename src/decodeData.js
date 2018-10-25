@@ -10,12 +10,10 @@ function decodeData(node) {
   switch (attr.precision) {
     case 32:
       return new Float32Array(buffer.buffer);
-      break;
     case 64:
       return new Float64Array(buffer.buffer);
-      break;
     default:
-      throw new Error('unknown precision in decoder: ' + options.precision);
+      throw new Error(`unknown precision in decoder: ${attr.precision}`);
   }
 }
 

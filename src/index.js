@@ -1,10 +1,13 @@
+'use strict';
+
 const FastXmlParser = require('fast-xml-parser');
+
 const processMetadata = require('./processMetaData');
 const processSpectrumList = require('./processSpectrumList');
 
 /**
  * Reads a mzData v1.05 file
- * @param {ArrayBuffer|String} data - ArrayBuffer or String or any Typed Array (including Node.js' Buffer from v4) with the data
+ * @param {ArrayBuffer|string} xml - ArrayBuffer or String or any Typed Array (including Node.js' Buffer from v4) with the data
  * @return {{times: Array<number>, series: { ms: { data:Array<Array<number>>}}}}
  */
 function mzData(xml) {
@@ -19,7 +22,7 @@ function mzData(xml) {
     ignoreAttributes: false
   });
 
-  if (!parsed.mzData) throw new Exception('The parent node is not mzData');
+  if (!parsed.mzData) throw new Error('The parent node is not mzData');
 
   let result = {
     metadata: {},

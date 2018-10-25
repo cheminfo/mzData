@@ -10,8 +10,8 @@ function processSpectrumList(parsed, times, msData) {
     let info = parseCvParam(
       spectrum.spectrumDesc.spectrumSettings.spectrumInstrument.cvParam
     );
-    info.scanmode;
-    info.polarity;
+    // info.scanmode;
+    // info.polarity;
     times.push(info.timeinminutes.value);
     let mzArray = decodeData(spectrum.mzArrayBinary.data);
     let intensity = decodeData(spectrum.intenArrayBinary.data);

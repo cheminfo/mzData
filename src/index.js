@@ -4,6 +4,7 @@ const FastXmlParser = require('fast-xml-parser');
 
 const processMetadata = require('./processMetaData');
 const processSpectrumList = require('./processSpectrumList');
+const ensureText = require('./util/ensureText');
 
 /**
  * Reads a mzData v1.05 file
@@ -11,9 +12,7 @@ const processSpectrumList = require('./processSpectrumList');
  * @return {{times: Array<number>, series: { ms: { data:Array<Array<number>>}}}}
  */
 function mzData(xml) {
-  if (xml instanceof Buffer) {
-    xml = xml.toString('utf8');
-  }
+  xml = ensureText(xml);
   let parsed = FastXmlParser.parse(xml, {
     textNodeName: '_data',
     attributeNamePrefix: '',

@@ -3,6 +3,9 @@
   "version": "1.0.1",
   "description": "Read and explore mzData v1.05 files",
   "main": "src/index.js",
+  "browser": {
+    "./src/util/ensureText.js": "./src/util/ensureTextBrowser.js"
+  },
   "files": [
     "src"
   ],

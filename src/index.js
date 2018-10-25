@@ -13,6 +13,9 @@ const ensureText = require('./util/ensureText');
  */
 function mzData(xml) {
   xml = ensureText(xml);
+
+  if (typeof xml !== 'string') throw new Error('Unknown variable type');
+
   let parsed = FastXmlParser.parse(xml, {
     textNodeName: '_data',
     attributeNamePrefix: '',

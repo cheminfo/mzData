@@ -1,79 +1,41 @@
-import {parser} from 'sax';
-import {decoder, mergeSeries} from './utils';
+const FastXmlParser = require('fast-xml-parser');
+const processMetadata = require('./processMetaData');
+const processSpectrumList = require('./processSpectrumList');
 
 /**
  * Reads a mzData v1.05 file
- * @param {ArrayBuffer} data - ArrayBuffer or any Typed Array (including Node.js' Buffer from v4) with the data
+ * @param {ArrayBuffer|String} data - ArrayBuffer or String or any Typed Array (including Node.js' Buffer from v4) with the data
  * @return {{times: Array<number>, series: { ms: { data:Array<Array<number>>}}}}
  */
-export default function mzData(data) {
-    const xml = parser(true, {trim: true});
+function mzData(xml) {
+  if (xml instanceof Buffer) {
+    xml = xml.toString('utf8');
+  }
+  let parsed = FastXmlParser.parse(xml, {
+    textNodeName: '_data',
+    attributeNamePrefix: '',
+    parseAttributeValue: true,
+    attrNodeName: '_attr',
+    ignoreAttributes: false
+  });
 
-    var result = {
-        times: [],
-        series: {}
-    };
-    var error = [];
-    var binaryData = {};
-    var mz = [];
-    var int = [];
-    var kind;
+  if (!parsed.mzData) throw new Exception('The parent node is not mzData');
 
-    xml.onopentag = (node) => {
-        // eslint-disable-next-line default-case
-        switch (node.name) {
-            case 'mzData':
-                kind = 'mzData';
-                break;
-            case 'cvParam':
-                if (node.attributes.name === 'TimeInMinutes') {
-                    result.times.push(Number(node.attributes.value));
-                }
-                break;
-            case 'mzArrayBinary':
-                binaryData = {
-                    serie: 'mz'
-                };
-                break;
-            case 'intenArrayBinary':
-                binaryData = {
-                    serie: 'int'
-                };
-                break;
-            case 'data':
-                if (node.isSelfClosing) {
-                    if (binaryData.serie === 'mz') {
-                        mz.push([]);
-                    } else if (binaryData.serie === 'int') {
-                        int.push([]);
-                    }
-                    binaryData = {};
-                } else if (binaryData.serie) {
-                    binaryData.precision = node.attributes.precision;
-                }
-                break;
-        }
-    };
-
-    xml.ontext = (raw) => {
-        if (binaryData.serie === 'mz') {
-            mz.push(decoder(raw, binaryData));
-        } else if (binaryData.serie === 'int') {
-            int.push(decoder(raw, binaryData));
-        }
-        binaryData = {};
-    };
-
-    xml.onerror = (err) => error.push(err);
-    xml.write(data).close();
-    if (!kind || kind !== 'mzData') {
-        throw new TypeError('Not a mzData file');
+  let result = {
+    metadata: {},
+    times: [],
+    series: {
+      ms: {
+        data: []
+      }
     }
-    if (error.length > 0) {
-        throw new Error(error);
-    }
+  };
 
-    result.series.ms = {};
-    result.series.ms.data = mergeSeries(mz, int);
-    return result;
+  processMetadata(parsed.mzData, result.metadata);
+
+  processSpectrumList(parsed.mzData, result.times, result.series.ms.data);
+
+  return result;
 }
+
+module.exports = mzData;

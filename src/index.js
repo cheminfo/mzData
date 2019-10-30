@@ -21,7 +21,7 @@ function mzData(xml) {
     attributeNamePrefix: '',
     parseAttributeValue: true,
     attrNodeName: '_attr',
-    ignoreAttributes: false
+    ignoreAttributes: false,
   });
 
   if (!parsed.mzData) throw new Error('The parent node is not mzData');
@@ -31,9 +31,9 @@ function mzData(xml) {
     times: [],
     series: {
       ms: {
-        data: []
-      }
-    }
+        data: [],
+      },
+    },
   };
 
   processMetadata(parsed.mzData, result.metadata);

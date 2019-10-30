@@ -9,14 +9,14 @@ function parseCvParam(cvParam) {
   } else {
     cvParams = [cvParam];
   }
-  for (let cvParam of cvParams) {
-    let attr = cvParam._attr;
+  for (let param of cvParams) {
+    let attr = param._attr;
     if (attr.name) {
       result[attr.name.toLowerCase()] = {
         accession: attr.accession,
         cvLabel: attr.cvLabel,
         value: attr.value,
-        name: attr.name
+        name: attr.name,
       };
     }
   }

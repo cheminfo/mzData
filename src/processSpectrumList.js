@@ -8,7 +8,7 @@ function processSpectrumList(parsed, times, msData) {
   let spectrumList = parsed.spectrumList.spectrum;
   for (let spectrum of spectrumList) {
     let info = parseCvParam(
-      spectrum.spectrumDesc.spectrumSettings.spectrumInstrument.cvParam
+      spectrum.spectrumDesc.spectrumSettings.spectrumInstrument.cvParam,
     );
     // info.scanmode;
     // info.polarity;

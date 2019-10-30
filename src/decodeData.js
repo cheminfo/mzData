@@ -6,7 +6,7 @@ function decodeData(node) {
   let data = node._data;
   let attr = node._attr;
   if (!data || !attr) return [];
-  var buffer = toByteArray(data);
+  let buffer = toByteArray(data);
 
   if (attr.endian !== 'little') {
     throw new Error(`endian not recognized: ${attr.endian}`);

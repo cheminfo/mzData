@@ -2,9 +2,11 @@
 
 const FastXmlParser = require('fast-xml-parser');
 
-const processMetadata = require('./processMetaData');
-const processSpectrumList = require('./processSpectrumList');
+const processMZData = require('./mzdata/process');
+const processMZML = require('./mzml/process');
+
 const ensureText = require('./util/ensureText');
+const searchObjectKey = require('./util/searchObjectKey');
 
 /**
  * Reads a mzData v1.05 file
@@ -21,24 +23,36 @@ function mzData(xml) {
     attributeNamePrefix: '',
     parseAttributeValue: true,
     attrNodeName: '_attr',
-    ignoreAttributes: false,
+    ignoreAttributes: false
   });
 
-  if (!parsed.mzData) throw new Error('The parent node is not mzData');
+  let topLevel = searchObjectKey(parsed, /^(mzdata|mzml|mzxml)$/i);
+  if (!topLevel) {
+    throw new Error('MZ parser: can not find tag mzdata, mzml or mzxml');
+  }
 
   let result = {
     metadata: {},
     times: [],
     series: {
       ms: {
-        data: [],
-      },
-    },
+        data: []
+      }
+    }
   };
 
-  processMetadata(parsed.mzData, result.metadata);
-
-  processSpectrumList(parsed.mzData, result.times, result.series.ms.data);
+  switch (Object.keys(topLevel)[0]) {
+    case 'mzdata':
+      processMZData(topLevel.mzdata, result);
+      break;
+    case 'mzml':
+      processMZML(topLevel.mzml, result);
+      break;
+    case 'mzxml':
+      break;
+    default:
+      throw new Error('MZ parser: unknown format: ' + Object.keys(topLevel)[0]);
+  }
 
   return result;
 }

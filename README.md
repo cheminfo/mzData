@@ -1,9 +1,9 @@
 # mzData
 
-  [![NPM version][npm-image]][npm-url]
-  [![build status][travis-image]][travis-url]
-  [![Test coverage][codecov-image]][codecov-url]
-  [![npm download][download-image]][download-url]
+[![NPM version][npm-image]][npm-url]
+[![build status][travis-image]][travis-url]
+[![Test coverage][codecov-image]][codecov-url]
+[![npm download][download-image]][download-url]
 
 Read and explore mzData v1.05 files.
 
@@ -21,11 +21,15 @@ const mzDataFile = readFileSync(__dirname + '/tiny.mzData.xml');
 var response = mzData(mzDataFile);
 ```
 
+## More examples
+
+http://www.psidev.info/mzML
+
 ## [API Documentation](https://cheminfo-js.github.io/mzData/)
 
 ## License
 
-  [MIT](./LICENSE)
+[MIT](./LICENSE)
 
 [npm-image]: https://img.shields.io/npm/v/mzdata.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/mzdata

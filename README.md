@@ -14,14 +14,16 @@ Read and explore mzData v1.05 files.
 ## Usage
 
 ```js
-import mzData from 'mzdata';
+import { parseMZ } from 'mzdata';
 
 // mzData files
 const mzDataFile = readFileSync(__dirname + '/tiny.mzData.xml');
-var response = mzData(mzDataFile);
+var response = parseMZ(mzDataFile);
 ```
 
 ## More examples
+
+You can find various examples files at:
 
 http://www.psidev.info/mzML
 

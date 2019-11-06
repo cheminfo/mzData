@@ -3,14 +3,14 @@
 const join = require('path').join;
 const readFileSync = require('fs').readFileSync;
 
-const mzData = require('..');
+const { parseMZ } = require('..');
 
 const pathFiles = join(__dirname, '/../../testFiles/mzData/');
 
 describe('mzData', () => {
   it('read tiny.mzData.xml buffer', () => {
     const data = readFileSync(join(pathFiles, 'tiny.mzData.xml'));
-    let response = mzData(data);
+    let response = parseMZ(data);
     expect(response.metadata.software).toBe('Bioworks Browser');
     expect(response.metadata.analyzer).toBe('PaulTrap');
     expect(response.metadata.detector).toBe('EM');
@@ -24,7 +24,7 @@ describe('mzData', () => {
 
   it('read tiny.mzData.xml', () => {
     const data = readFileSync(join(pathFiles, 'tiny.mzData.xml'), 'utf8');
-    let response = mzData(data);
+    let response = parseMZ(data);
     expect(response.times).toStrictEqual([5.8905, 5.944667]);
     expect(response.series.ms.data).toHaveLength(2);
     expect(response.series.ms.data[0][0]).toHaveLength(1313);
@@ -35,7 +35,7 @@ describe('mzData', () => {
 
   it('read real file', () => {
     const data = readFileSync(join(pathFiles, '3-28-5.mzdata.xml'), 'utf8');
-    let response = mzData(data);
+    let response = parseMZ(data);
     expect(response.times).toHaveLength(3029);
     expect(response.series.ms.data).toHaveLength(3029);
     expect(response.series.ms.data[0][0]).toHaveLength(62);

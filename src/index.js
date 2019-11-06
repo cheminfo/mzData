@@ -13,7 +13,7 @@ const searchObjectKey = require('./util/searchObjectKey');
  * @param {ArrayBuffer|string} xml - ArrayBuffer or String or any Typed Array (including Node.js' Buffer from v4) with the data
  * @return {{times: Array<number>, series: { ms: { data:Array<Array<number>>}}}}
  */
-function mzData(xml) {
+function parseMZ(xml) {
   xml = ensureText(xml);
 
   if (typeof xml !== 'string') throw new TypeError('xml must be a string');
@@ -57,4 +57,4 @@ function mzData(xml) {
   return result;
 }
 
-module.exports = mzData;
+module.exports = { parseMZ };

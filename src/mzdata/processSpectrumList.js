@@ -1,9 +1,7 @@
-'use strict';
+import { parseCvParam } from './parseCvParam';
+import { decodeData } from './decodeData';
 
-const parseCvParam = require('./parseCvParam');
-const decodeData = require('./decodeData');
-
-function processSpectrumList(parsed, times, msData) {
+export function processSpectrumList(parsed, times, msData) {
   if (!parsed || !parsed.spectrumList || !parsed.spectrumList.spectrum) return;
   let spectrumList = parsed.spectrumList.spectrum;
   for (let spectrum of spectrumList) {
@@ -18,5 +16,3 @@ function processSpectrumList(parsed, times, msData) {
     msData.push([mzArray, intensity]);
   }
 }
-
-module.exports = processSpectrumList;

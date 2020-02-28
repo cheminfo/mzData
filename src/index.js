@@ -1,29 +1,26 @@
-'use strict';
+import { parse } from 'fast-xml-parser';
 
-const FastXmlParser = require('fast-xml-parser');
-
-const processMZData = require('./mzdata/process');
-const processMZML = require('./mzml/process');
-
-const ensureText = require('./util/ensureText');
-const searchObjectKey = require('./util/searchObjectKey');
+import { processMZData } from './mzdata/process';
+import { processMZML } from './mzml/process';
+import { ensureText } from './util/ensureText';
+import { searchObjectKey } from './util/searchObjectKey';
 
 /**
  * Reads a mzData v1.05 file
  * @param {ArrayBuffer|string} xml - ArrayBuffer or String or any Typed Array (including Node.js' Buffer from v4) with the data
  * @return {{times: Array<number>, series: { ms: { data:Array<Array<number>>}}}}
  */
-function parseMZ(xml) {
+export function parseMZ(xml) {
   xml = ensureText(xml);
 
   if (typeof xml !== 'string') throw new TypeError('xml must be a string');
 
-  let parsed = FastXmlParser.parse(xml, {
+  let parsed = parse(xml, {
     textNodeName: '_data',
     attributeNamePrefix: '',
     parseAttributeValue: true,
     attrNodeName: '_attr',
-    ignoreAttributes: false
+    ignoreAttributes: false,
   });
 
   let topLevel = searchObjectKey(parsed, /^(mzdata|mzml|mzxml)$/i);
@@ -36,9 +33,9 @@ function parseMZ(xml) {
     times: [],
     series: {
       ms: {
-        data: []
-      }
-    }
+        data: [],
+      },
+    },
   };
 
   switch (Object.keys(topLevel)[0]) {
@@ -51,10 +48,8 @@ function parseMZ(xml) {
     case 'mzxml':
       break;
     default:
-      throw new Error('MZ parser: unknown format: ' + Object.keys(topLevel)[0]);
+      throw new Error(`MZ parser: unknown format: ${Object.keys(topLevel)[0]}`);
   }
 
   return result;
 }
-
-module.exports = { parseMZ };

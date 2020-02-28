@@ -1,8 +1,6 @@
-'use strict';
+import camelCase from 'camelcase';
 
-const camelCase = require('camelcase');
-
-function parseCvParam(cvParam) {
+export function parseCvParam(cvParam) {
   let result = {};
   if (!cvParam) return result;
   let cvParams;
@@ -18,11 +16,9 @@ function parseCvParam(cvParam) {
         accession: attr.accession,
         cvLabel: attr.cvLabel,
         value: attr.value,
-        name: attr.name
+        name: attr.name,
       };
     }
   }
   return result;
 }
-
-module.exports = parseCvParam;

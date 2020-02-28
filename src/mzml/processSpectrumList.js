@@ -1,17 +1,17 @@
-'use strict';
+import { parseCvParam } from './parseCvParam';
+import { parseBinaryDataArray } from './parseBinaryDataArray';
 
-const parseCvParam = require('./parseCvParam');
-const parseBinaryDataArray = require('./parseBinaryDataArray');
-
-function processSpectrumList(parsed, times, msData) {
+export function processSpectrumList(parsed, times, msData) {
   if (
     !parsed ||
     !parsed.run ||
     !parsed.run.spectrumList ||
     !parsed.run.spectrumList.spectrum
-  )
+  ) {
     return;
+  }
   let spectrumList = parsed.run.spectrumList.spectrum;
+
   for (let spectrum of spectrumList) {
     let scanList = spectrum.scanList;
     if (Array.isArray(scanList)) throw new Error('Unsupported scanList');
@@ -36,5 +36,3 @@ function processSpectrumList(parsed, times, msData) {
     msData.push([first.mz || second.mz, second.intensity || first.intensity]);
   }
 }
-
-module.exports = processSpectrumList;

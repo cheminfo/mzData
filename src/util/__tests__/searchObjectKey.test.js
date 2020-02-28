@@ -1,4 +1,4 @@
-const searchObjectKey = require('../searchObjectKey');
+import { searchObjectKey } from '../searchObjectKey';
 
 test('searchObjectKey', () => {
   const object = {
@@ -7,21 +7,21 @@ test('searchObjectKey', () => {
       key3: false,
       key4: {
         key5: true,
-        key6: true
-      }
-    }
+        key6: true,
+      },
+    },
   };
 
-  expect(searchObjectKey(object, /key2/)).toEqual({ key2: true });
-  expect(searchObjectKey(object, /key4/)).toEqual({
+  expect(searchObjectKey(object, /key2/)).toStrictEqual({ key2: true });
+  expect(searchObjectKey(object, /key4/)).toStrictEqual({
     key4: {
       key5: true,
-      key6: true
-    }
+      key6: true,
+    },
   });
 
-  expect(searchObjectKey(object, /key5/)).toEqual({
-    key5: true
+  expect(searchObjectKey(object, /key5/)).toStrictEqual({
+    key5: true,
   });
-  expect(searchObjectKey(object, /key7/)).toBe(undefined);
+  expect(searchObjectKey(object, /key7/)).toBeUndefined();
 });

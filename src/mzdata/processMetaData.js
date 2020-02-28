@@ -1,8 +1,6 @@
-'use strict';
+import { parseCvParam } from './parseCvParam.js';
 
-const parseCvParam = require('./parseCvParam.js');
-
-function processMetadata(parsed, metadata) {
+export function processMetadata(parsed, metadata) {
   if (!parsed || !parsed.description) return;
   let description = parsed.description;
   if (description.dataProcessing) {
@@ -29,5 +27,3 @@ function processMetadata(parsed, metadata) {
     }
   }
 }
-
-module.exports = processMetadata;

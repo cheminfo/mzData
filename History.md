@@ -1,3 +1,12 @@
+# [2.0.0](https://github.com/cheminfo-js/mzData/compare/v1.1.0...v2.0.0) (2020-02-28)
+
+
+### Features
+
+* add mzML parser ([079d3a5](https://github.com/cheminfo-js/mzData/commit/079d3a50f550858b5bd6c55f5df61041be51db90))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/cheminfo-js/mzData/compare/v1.0.1...v1.1.0) (2018-10-25)
 

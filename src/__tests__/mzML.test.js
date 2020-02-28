@@ -1,7 +1,7 @@
-const { readFileSync } = require('fs');
-const join = require('path').join;
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
-const { parseMZ } = require('..');
+import { parseMZ } from '..';
 
 const pathFiles = join(__dirname, '/../../testFiles/mzML/');
 
@@ -26,7 +26,7 @@ describe('mzML', () => {
       0.4,
       0.6,
       0.8,
-      1
+      1,
     ]);
     expect(response.series.ms.data).toHaveLength(1500);
     expect(response.series.ms.data[0][0]).toHaveLength(336);
@@ -44,7 +44,7 @@ describe('mzML', () => {
       0.011218333333333334,
       0.022838333333333332,
       0.034925,
-      0.04862
+      0.04862,
     ]);
     expect(response.series.ms.data).toHaveLength(48);
     expect(response.series.ms.data[0][0]).toHaveLength(19914);

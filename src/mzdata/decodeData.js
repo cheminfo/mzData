@@ -1,8 +1,6 @@
-'use strict';
+import { toByteArray } from 'base64-js';
 
-const toByteArray = require('base64-js').toByteArray;
-
-function decodeData(node) {
+export function decodeData(node) {
   let data = node._data;
   let attr = node._attr;
   if (!data || !attr) return [];
@@ -21,5 +19,3 @@ function decodeData(node) {
       throw new Error(`unknown precision in decoder: ${attr.precision}`);
   }
 }
-
-module.exports = decodeData;

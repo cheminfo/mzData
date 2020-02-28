@@ -1,12 +1,12 @@
-'use strict';
+import pako from 'pako';
+import { toByteArray } from 'base64-js';
 
-const pako = require('pako');
-const toByteArray = require('base64-js').toByteArray;
-const parseCvParam = require('./parseCvParam');
+import { parseCvParam } from './parseCvParam';
 
-function decodeData(node) {
+export function parseBinaryDataArray(node) {
   let data = node.binary;
   let attr = node._attr;
+
   let cvParam = parseCvParam(node.cvParam);
   if (!data || !attr) return [];
   let buffer = decoder(data, cvParam);
@@ -39,5 +39,3 @@ function decoder(base64Encoded, cvParams = {}) {
     return toByteArray(base64Encoded);
   }
 }
-
-module.exports = decodeData;

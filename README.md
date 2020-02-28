@@ -5,7 +5,12 @@
 [![Test coverage][codecov-image]][codecov-url]
 [![npm download][download-image]][download-url]
 
-Read and explore mzData v1.05 files.
+Read and explore xml files used to encode mass spectra.
+
+This includes:
+- mzData
+- mzML
+- mzXML
 
 ## Installation
 

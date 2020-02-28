@@ -1,9 +1,7 @@
-const processMetadata = require('./processMetaData');
-const processSpectrumList = require('./processSpectrumList');
+import { processMetadata } from './processMetaData';
+import { processSpectrumList } from './processSpectrumList';
 
-function processMZData(topLevel, result) {
+export function processMZData(topLevel, result) {
   processMetadata(topLevel, result.metadata);
   processSpectrumList(topLevel, result.times, result.series.ms.data);
 }
-
-module.exports = processMZData;

@@ -1,6 +1,4 @@
-'use strict';
-
-function parseCvParam(cvParam) {
+export function parseCvParam(cvParam) {
   let result = {};
   if (!cvParam) return result;
   let cvParams;
@@ -22,5 +20,3 @@ function parseCvParam(cvParam) {
   }
   return result;
 }
-
-module.exports = parseCvParam;

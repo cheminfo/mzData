@@ -1,15 +1,13 @@
-'use strict';
+import { join } from 'path';
+import { readFileSync } from 'fs';
 
-const join = require('path').join;
-const readFileSync = require('fs').readFileSync;
-
-const { parseMZ } = require('..');
+import { parseMZ } from '..';
 
 const pathFiles = join(__dirname, '/../../testFiles/mzData/');
 
 describe('mzData', () => {
-  it('read tiny.mzData.xml buffer', () => {
-    const data = readFileSync(join(pathFiles, 'tiny.mzData.xml'));
+  it.skip('read tiny.mzData.xml buffer', () => {
+    const data = readFileSync(join(pathFiles, '7_19_s3_centro_neg.xml'));
     let response = parseMZ(data);
     expect(response.metadata.software).toBe('Bioworks Browser');
     expect(response.metadata.analyzer).toBe('PaulTrap');

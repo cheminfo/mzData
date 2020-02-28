@@ -12,6 +12,7 @@
     "eslint": "eslint src",
     "eslint-fix": "npm run eslint -- --fix",
     "prepublishOnly": "rollup -c",
+    "test-travis": "npm run test",
     "test": "npm run test-coverage && npm run eslint",
     "test-coverage": "jest --coverage",
     "test-only": "jest"

@@ -2,6 +2,7 @@ import { parse } from 'fast-xml-parser';
 
 import { processMZData } from './mzdata/process';
 import { processMZML } from './mzml/process';
+import { processMZXML } from './mzxml/process';
 import { ensureText } from './util/ensureText';
 import { searchObjectKey } from './util/searchObjectKey';
 
@@ -46,6 +47,7 @@ export function parseMZ(xml) {
       processMZML(topLevel.mzml, result);
       break;
     case 'mzxml':
+      processMZXML(topLevel.mzxml, result);
       break;
     default:
       throw new Error(`MZ parser: unknown format: ${Object.keys(topLevel)[0]}`);

@@ -17,17 +17,15 @@ export function parseBinaryDataArray(node) {
   } else {
     throw new Error('unknown binary data type');
   }
-
+  // console.log(buffer)
   if (cvParam.precision === 64) {
     let result = {};
     result.data = new Float64Array(buffer.buffer);
-    result.metadata = attr;
     result.kind = kind;
     return result;
   } else if (cvParam.precision === 32) {
     let result = {};
-    result.data = new Float32Array(buffer.buffer);
-    result.metadata = attr;
+    result.data = new Float32Array(buffer);
     result.kind = kind;
     return result;
   }

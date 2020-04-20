@@ -1,6 +1,6 @@
 import { parseBinaryDataArray } from './parseBinaryDataArray';
 
-export function processSpectrumList(parsed, times, msData) {
+export function processSpectrumList(parsed, msData) {
   if (!parsed.msRun.scan) return;
   let scanList = parsed.msRun.scan;
   if (Array.isArray(scanList) === false) scanList = [scanList];

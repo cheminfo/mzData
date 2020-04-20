@@ -33,7 +33,7 @@ export function parseBinaryDataArray(node) {
 }
 
 function decoder(base64Encoded, cvParams = {}) {
-  if (cvParams.zlibCompression) {
+  if (cvParams.compressionType === 'zlib') {
     return pako.inflate(toByteArray(base64Encoded));
   } else {
     return toByteArray(base64Encoded);

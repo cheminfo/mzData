@@ -1,3 +1,7 @@
+# [2.1.0](https://github.com/cheminfo-js/mzData/compare/v2.0.1...v2.1.0) (2020-04-20)
+
+
+
 ## [2.0.1](https://github.com/cheminfo-js/mzData/compare/v1.1.0...v2.0.1) (2020-02-28)
 
 

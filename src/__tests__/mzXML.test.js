@@ -6,59 +6,45 @@ import { parseMZ } from '..';
 const pathFiles = join(__dirname, '/../../testFiles/mzXML/');
 
 describe('mzML', () => {
-  it('tiny2.0.mzXML', () => {
+  it('read 32 bits mzXML test file', () => {
     const data = readFileSync(join(pathFiles, 'tiny2.0.mzXML'));
     let response = parseMZ(data);
-    expect(response.times).toStrictEqual([1209, 2577]);
+    expect(response.times).toStrictEqual([353.43, 356.68]);
     expect(response.series.ms.data).toHaveLength(2);
-    expect(response.series.ms.data[0][0]).toHaveLength(5252);
-    expect(response.series.ms.data[1][0]).toHaveLength(172);
+    expect(response.series.ms.data[0][0]).toHaveLength(1313);
+    expect(response.series.ms.data[1][0]).toHaveLength(43);
   });
 
-  it('read compressed tiny3.0.mzXML 32bits', () => {
+  it('read 32 bits mzXML compressed test file', () => {
     const data = readFileSync(join(pathFiles, 'tiny3.0.mzXML'));
     let response = parseMZ(data);
-    expect(response.times).toStrictEqual([1209, 2577]);
+    expect(response.times).toStrictEqual([353.43, 356.68]);
     expect(response.series.ms.data).toHaveLength(2);
-    expect(response.series.ms.data[0][0]).toHaveLength(391);
-    expect(response.series.ms.data[1][0]).toHaveLength(27);
+    expect(response.series.ms.data[0][0]).toHaveLength(1313);
+    expect(response.series.ms.data[1][0]).toHaveLength(43);
+    expect(response.series.ms.data[0][0]).toHaveLength(
+      response.series.ms.info[0].peaksCount,
+    );
   });
 
-  it('read metadata scan 2 of compressed tiny3.0.mzXML 32bits', () => {
-    const data = readFileSync(join(pathFiles, 'tiny3.0.mzXML'));
-    let response = parseMZ(data);
-    let metadata = {
-      num: 2,
-      msLevel: 2,
-      peaksCount: 43,
-      polarity: '+',
-      scanType: 'Full',
-      retentionTime: 'PT356.68S',
-      collisionEnergy: 35,
-      lowMz: 223.089,
-      highMz: 531.078,
-      basePeakMz: 428.905,
-      basePeakIntensity: 301045,
-      totIonCurrent: 764637,
-    };
-    expect(response.series.ms.info[1]).toStrictEqual(metadata);
-  });
-
-  it('read bigTest.mzML', () => {
+  it('read 64 bits mzXML test file', () => {
     const data = readFileSync(join(pathFiles, 'bigTest.mzXML'));
     let response = parseMZ(data);
+    let scans = response.series.ms.data;
+    let intensity = scans[0][0].reduce((a, b) => a + b);
+    let mz = scans[0][1].reduce((a, b) => a + b);
     expect(response.times).toHaveLength(12000);
-    expect(response.times.slice(0, 6)).toStrictEqual([
-      965,
-      28941,
-      29370,
-      29799,
-      30228,
-      30657,
-    ]);
+    expect(intensity).toStrictEqual(258157.20765481654);
+    expect(mz).toStrictEqual(295779);
     expect(response.series.ms.data).toHaveLength(12000);
-    expect(response.series.ms.data[0][0]).toHaveLength(1296);
-    expect(response.series.ms.data[1][0]).toHaveLength(2);
-    expect(response.series.ms.data[2][0]).toHaveLength(2);
+    expect(response.series.ms.data[0][0]).toHaveLength(
+      response.series.ms.info[0].peaksCount,
+    );
+    expect(response.series.ms.data[1][0]).toHaveLength(
+      response.series.ms.info[1].peaksCount,
+    );
+    expect(response.series.ms.data[2][0]).toHaveLength(
+      response.series.ms.info[2].peaksCount,
+    );
   });
 });

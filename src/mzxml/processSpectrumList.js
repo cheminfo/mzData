@@ -1,12 +1,10 @@
 import { parseBinaryDataArray } from './parseBinaryDataArray';
 
-export function processSpectrumList(parsed, msData) {
+export function processSpectrumList(parsed, times, msData) {
   if (!parsed.msRun.scan) return;
   let scanList = parsed.msRun.scan;
   if (Array.isArray(scanList) === false) scanList = [scanList];
-  if (scanList[0]._attr) {
-    msData.info = [];
-  }
+  if (scanList[0]._attr) msData.info = [];
   for (let scan of scanList) {
     if (typeof scan !== 'object') continue;
     if (Array.isArray(scan)) {
@@ -21,5 +19,8 @@ export function processSpectrumList(parsed, msData) {
     }
     msData.data.push([first, second]);
     msData.info.push(scan._attr);
+    times.push(
+      parseFloat(scan._attr.retentionTime.replace(/(P*)(T*)(S*)/gi, '')),
+    );
   }
 }

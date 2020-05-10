@@ -14,6 +14,7 @@ export function parseCvParam(cvParam) {
         byteOrder: param.byteOrder,
         contentType: param.contentType,
         pairOrder: param.pairOrder,
+        compressionType: param.compressionType,
       };
     }
   }

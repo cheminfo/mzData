@@ -10,10 +10,11 @@ export function processSpectrumList(parsed, times, msData) {
     if (Array.isArray(scan)) {
       throw new Error('processSpectrumList: scan may not be an array');
     }
-    let dataArray = parseBinaryDataArray(scan);
-    let first = new Float64Array(dataArray.data.length / 2);
-    let second = new Float64Array(dataArray.data.length / 2);
-    for (let i = 0; i < dataArray.data.length / 2; i++) {
+    const dataArray = parseBinaryDataArray(scan);
+    let length = dataArray.data.length / 2;
+    let first = new Float64Array(length);
+    let second = new Float64Array(length);
+    for (let i = 0; i < length; i++) {
       first[i] = dataArray.data[i * 2];
       second[i] = dataArray.data[i * 2 + 1];
     }

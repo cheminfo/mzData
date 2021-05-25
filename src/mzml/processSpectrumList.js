@@ -1,5 +1,5 @@
-import { parseCvParam } from './parseCvParam';
 import { parseBinaryDataArray } from './parseBinaryDataArray';
+import { parseCvParam } from './parseCvParam';
 
 export function processSpectrumList(parsed, times, msData) {
   if (

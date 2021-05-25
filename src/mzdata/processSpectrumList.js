@@ -1,5 +1,5 @@
-import { parseCvParam } from './parseCvParam';
 import { decodeData } from './decodeData';
+import { parseCvParam } from './parseCvParam';
 
 export function processSpectrumList(parsed, times, msData) {
   if (!parsed || !parsed.spectrumList || !parsed.spectrumList.spectrum) return;

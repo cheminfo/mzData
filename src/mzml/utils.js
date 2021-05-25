@@ -1,5 +1,5 @@
-import pako from 'pako';
 import { decode } from 'base64-arraybuffer';
+import pako from 'pako';
 
 export function decoder(base64Encoded, options = {}) {
   const { compressionAlgorithm } = options;

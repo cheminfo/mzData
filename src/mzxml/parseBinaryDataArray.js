@@ -1,5 +1,5 @@
-import pako from 'pako';
 import { toByteArray } from 'base64-js';
+import pako from 'pako';
 
 import { parseCvParam } from './parseCvParam';
 

@@ -1,9 +1,9 @@
+import { ensureString } from 'ensure-string';
 import { parse } from 'fast-xml-parser';
 
 import { processMZData } from './mzdata/process';
 import { processMZML } from './mzml/process';
 import { processMZXML } from './mzxml/process';
-import { ensureText } from './util/ensureText';
 import { searchObjectKey } from './util/searchObjectKey';
 
 /**
@@ -12,7 +12,7 @@ import { searchObjectKey } from './util/searchObjectKey';
  * @return {{times: Array<number>, series: { ms: { data:Array<Array<number>>}}}}
  */
 export function parseMZ(xml) {
-  xml = ensureText(xml);
+  xml = ensureString(xml);
 
   if (typeof xml !== 'string') throw new TypeError('xml must be a string');
 

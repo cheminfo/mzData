@@ -33,27 +33,27 @@
     "testEnvironment": "node"
   },
   "devDependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.14.0",
-    "cheminfo-build": "^1.1.10",
+    "@babel/plugin-transform-modules-commonjs": "^7.15.0",
+    "cheminfo-build": "^1.1.11",
     "cheminfo-tools": "^1.23.3",
-    "codecov": "^3.8.2",
-    "eslint": "^7.27.0",
-    "eslint-config-cheminfo": "^5.2.4",
-    "eslint-plugin-import": "^2.23.3",
-    "eslint-plugin-jest": "^24.3.6",
+    "codecov": "^3.8.3",
+    "eslint": "^7.32.0",
+    "eslint-config-cheminfo": "^5.3.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jest": "^24.4.0",
     "eslint-plugin-no-only-tests": "^2.6.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "jest": "^27.0.1",
-    "prettier": "^2.3.0",
-    "rollup": "^2.49.0"
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.1.0",
+    "prettier": "^2.3.2",
+    "rollup": "^2.56.3"
   },
   "dependencies": {
-    "base64-arraybuffer": "^0.2.0",
+    "base64-arraybuffer": "^1.0.1",
     "base64-js": "^1.5.1",
     "buffer": "^6.0.3",
     "camelcase": "^6.2.0",
-    "ensure-string": "^0.1.1",
+    "ensure-string": "^1.0.0",
     "fast-xml-parser": "^3.19.0",
-    "pako": "^2.0.3"
+    "pako": "^2.0.4"
   }
 }

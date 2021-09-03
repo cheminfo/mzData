@@ -1,9 +1,9 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-import { parseMZ } from '..';
+import { parseMZ } from '../..';
 
-const pathFiles = join(__dirname, '/../../testFiles/mzXML/');
+const pathFiles = join(__dirname, 'data');
 
 describe('mzML', () => {
   it('read 32 bits mzXML test file', () => {

@@ -1,10 +1,9 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-import { parseMZ } from '..';
+import { parseMZ } from '../..';
 
-const pathFiles = join(__dirname, '/../../testFiles/mzData/');
-
+const pathFiles = join(__dirname, 'data');
 describe('mzData', () => {
   it.skip('read tiny.mzData.xml buffer', () => {
     const data = readFileSync(join(pathFiles, '7_19_s3_centro_neg.xml'));

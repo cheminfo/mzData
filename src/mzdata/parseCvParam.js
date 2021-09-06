@@ -8,13 +8,13 @@ export function parseCvParam(cvParam) {
     cvParams = [cvParam];
   }
   for (let param of cvParams) {
-    let attr = param._attr;
-    if (attr.name) {
-      result[attr.name.toLowerCase()] = {
-        accession: attr.accession,
-        cvLabel: attr.cvLabel,
-        value: attr.value,
-        name: attr.name,
+    let attributes = param.attributes;
+    if (attributes.name) {
+      result[attributes.name.toLowerCase()] = {
+        accession: attributes.accession,
+        cvLabel: attributes.cvLabel,
+        value: attributes.value,
+        name: attributes.name,
       };
     }
   }

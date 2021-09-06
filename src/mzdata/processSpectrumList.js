@@ -1,4 +1,3 @@
-import { decodeData } from './decodeData';
 import { parseCvParam } from './parseCvParam';
 
 export function processSpectrumList(parsed, times, msData) {
@@ -8,11 +7,11 @@ export function processSpectrumList(parsed, times, msData) {
     let info = parseCvParam(
       spectrum.spectrumDesc.spectrumSettings.spectrumInstrument.cvParam,
     );
-    // info.scanmode;
-    // info.polarity;
+
     times.push(info.timeinminutes.value);
-    let mzArray = decodeData(spectrum.mzArrayBinary.data);
-    let intensity = decodeData(spectrum.intenArrayBinary.data);
+
+    let mzArray = spectrum.mzArrayBinary.data['#text'] || [];
+    let intensity = spectrum.intenArrayBinary.data['#text'] || [];
     msData.push([mzArray, intensity]);
   }
 }

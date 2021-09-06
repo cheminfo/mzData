@@ -1,4 +1,3 @@
-import { parseBinaryDataArray } from './parseBinaryDataArray';
 import { parseCvParam } from './parseCvParam';
 
 export function processSpectrumList(parsed, times, msData) {
@@ -13,6 +12,7 @@ export function processSpectrumList(parsed, times, msData) {
   let spectrumList = parsed.run.spectrumList.spectrum;
 
   for (let spectrum of spectrumList) {
+    if (!spectrum.binaryDataArrayList) continue;
     let scanList = spectrum.scanList;
     if (Array.isArray(scanList)) throw new Error('Unsupported scanList');
 
@@ -22,17 +22,24 @@ export function processSpectrumList(parsed, times, msData) {
     if (Array.isArray(scan)) {
       throw new Error('processSpectrumList: scan may not be an array');
     }
-    let cvParam = parseCvParam(scan.cvParam);
+    const cvParam = parseCvParam(scan.cvParam);
     times.push(cvParam.scanStartTime.value);
 
-    let dataArrayList = spectrum.binaryDataArrayList.binaryDataArray;
+    const dataArrayList = spectrum.binaryDataArrayList.binaryDataArray;
     if (dataArrayList.length !== 2) {
       throw new Error('Can not decodeData because length !== 2');
     }
 
-    let first = parseBinaryDataArray(dataArrayList[0]);
-    let second = parseBinaryDataArray(dataArrayList[1]);
+    const first = dataArrayList[0];
+    const firstCVParams = parseCvParam(first.cvParam);
+    const second = dataArrayList[1];
+    const secondCVParams = parseCvParam(second.cvParam);
 
-    msData.push([first.mz || second.mz, second.intensity || first.intensity]);
+    if (firstCVParams.mzArray && secondCVParams.intensityArray) {
+      msData.push([first.binary, second.binary]);
+    }
+    if (firstCVParams.intensityArray && secondCVParams.mzArray) {
+      msData.push([second.binary, first.binary]);
+    }
   }
 }

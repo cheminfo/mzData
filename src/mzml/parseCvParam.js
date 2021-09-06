@@ -9,14 +9,16 @@ export function parseCvParam(cvParam) {
   } else {
     cvParams = [cvParam];
   }
-  for (let param of cvParams) {
-    let attr = param._attr;
-    if (attr.name) {
-      result[camelCase(attr.name.toLowerCase().replace(/[^ a-z0-9]/g, ''))] = {
-        accession: attr.accession,
-        cvLabel: attr.cvLabel,
-        value: attr.value,
-        name: attr.name,
+  for (let parameter of cvParams) {
+    let attribute = parameter.attributes;
+    if (attribute.name) {
+      result[
+        camelCase(attribute.name.toLowerCase().replace(/[^ a-z0-9]/g, ''))
+      ] = {
+        accession: attribute.accession,
+        cvLabel: attribute.cvLabel,
+        value: attribute.value,
+        name: attribute.name,
       };
     }
   }

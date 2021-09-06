@@ -1,14 +1,14 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-import { parseMZ } from '../..';
+import { parseMzML } from '../parseMzML';
 
 const pathFiles = join(__dirname, 'data');
 
-describe('mzML', () => {
+describe('parseMzML', () => {
   it('read tiny.mzML', () => {
     const data = readFileSync(join(pathFiles, 'tiny.mzML'));
-    let response = parseMZ(data);
+    let response = parseMzML(data);
     expect(response.times).toStrictEqual([5.8905, 5.9905, 42.05]);
     expect(response.series.ms.data).toHaveLength(3);
     expect(response.series.ms.data[0][0]).toHaveLength(15);
@@ -18,7 +18,7 @@ describe('mzML', () => {
 
   it('read test.mzML', () => {
     const data = readFileSync(join(pathFiles, 'test.mzML'));
-    let response = parseMZ(data);
+    let response = parseMzML(data);
     expect(response.times).toHaveLength(1500);
     expect(response.times.slice(0, 6)).toStrictEqual([
       0, 0.2, 0.4, 0.6, 0.8, 1,
@@ -31,7 +31,7 @@ describe('mzML', () => {
 
   it('read compressed 32bits', () => {
     const data = readFileSync(join(pathFiles, 'small_zlib.pwiz.1.1.mzML'));
-    let response = parseMZ(data);
+    let response = parseMzML(data);
     expect(response.times).toHaveLength(48);
     expect(response.times.slice(0, 6)).toStrictEqual([
       0.004935, 0.007896666666666666, 0.011218333333333334,

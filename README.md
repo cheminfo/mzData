@@ -8,6 +8,7 @@
 Read and explore xml files used to encode mass spectra.
 
 This includes:
+
 - mzData
 - mzML
 - mzXML
@@ -25,6 +26,10 @@ import { parseMZ } from 'mzdata';
 const mzDataFile = readFileSync(__dirname + '/tiny.mzData.xml');
 var response = parseMZ(mzDataFile);
 ```
+
+## Ontology
+
+[Ontology](./ontology.md)
 
 ## More examples
 

@@ -1,14 +1,14 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-import { parseMZ } from '../..';
+import { parseMzXML } from '../parseMzXML';
 
 const pathFiles = join(__dirname, 'data');
 
-describe('mzML', () => {
+describe('mzXML', () => {
   it('read 32 bits mzXML test file', () => {
     const data = readFileSync(join(pathFiles, 'tiny2.0.mzXML'));
-    const response = parseMZ(data);
+    const response = parseMzXML(data);
     const scans = response.series.ms.data;
     const info = response.series.ms.info;
     const highMz = info[0].highMz;
@@ -33,10 +33,9 @@ describe('mzML', () => {
     expect(scans[1][0]).toHaveLength(peaksCount1);
   });
 
-  // eslint-disable-next-line jest/no-disabled-tests
   it.skip('read 32 bits mzXML compressed test file', () => {
     const data = readFileSync(join(pathFiles, 'tiny3.0.mzXML'));
-    const response = parseMZ(data);
+    const response = parseMzXML(data);
     const scans = response.series.ms.data;
     const highMz = response.series.ms.info[0].highMz;
     const lowMz = response.series.ms.info[0].lowMz;
@@ -63,7 +62,7 @@ describe('mzML', () => {
 
   it('read 64 bits mzXML test file', () => {
     const data = readFileSync(join(pathFiles, 'bigTest.mzXML'));
-    const response = parseMZ(data);
+    const response = parseMzXML(data);
     const scans = response.series.ms.data;
     const info = response.series.ms.info;
     const highMz = info[0].highMz;

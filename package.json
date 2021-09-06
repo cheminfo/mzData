@@ -50,10 +50,7 @@
   "dependencies": {
     "arraybuffer-xml-parser": "^0.3.0",
     "base64-arraybuffer": "^1.0.1",
-    "base64-js": "^1.5.1",
-    "buffer": "^6.0.3",
     "camelcase": "^6.2.0",
-    "ensure-string": "^1.0.0",
     "pako": "^2.0.4",
     "uint8-base64": "^0.1.1"
   }

@@ -1,10 +1,8 @@
-import { ensureString } from 'ensure-string';
-import { parse } from 'fast-xml-parser';
+import { parseMzData } from './mzdata/parseMzData';
+import { parseMzML } from './mzml/parseMzML';
+import { parseMzXML } from './mzxml/parseMzXML';
 
-import { processMZData } from './mzdata/process';
-import { processMZML } from './mzml/process';
-import { processMZXML } from './mzxml/process';
-import { searchObjectKey } from './util/searchObjectKey';
+const decoder = new TextDecoder();
 
 /**
  * Reads a mzData v1.05 file
@@ -12,46 +10,15 @@ import { searchObjectKey } from './util/searchObjectKey';
  * @return {{times: Array<number>, series: { ms: { data:Array<Array<number>>}}}}
  */
 export function parseMZ(xml) {
-  xml = ensureString(xml);
+  const header = decoder.decode(xml.subarray(0, 200));
 
-  if (typeof xml !== 'string') throw new TypeError('xml must be a string');
-
-  let parsed = parse(xml, {
-    textNodeName: '_data',
-    attributeNamePrefix: '',
-    parseAttributeValue: true,
-    attrNodeName: '_attr',
-    ignoreAttributes: false,
-  });
-
-  let topLevel = searchObjectKey(parsed, /^(mzdata|mzml|mzxml)$/i);
-  if (!topLevel) {
-    throw new Error('MZ parser: can not find tag mzdata, mzml or mzxml');
+  if (header.includes('mzData')) {
+    return parseMzData(xml);
+  } else if (header.includes('mzML')) {
+    return parseMzML(xml);
+  } else if (header.includes('mzXML')) {
+    return parseMzXML(xml);
+  } else {
+    throw new Error(`MZ parser: unknown format`);
   }
-
-  let result = {
-    metadata: {},
-    times: [],
-    series: {
-      ms: {
-        data: [],
-      },
-    },
-  };
-
-  switch (Object.keys(topLevel)[0]) {
-    case 'mzdata':
-      processMZData(topLevel.mzdata, result);
-      break;
-    case 'mzml':
-      processMZML(topLevel.mzml, result);
-      break;
-    case 'mzxml':
-      processMZXML(topLevel.mzxml, result);
-      break;
-    default:
-      throw new Error(`MZ parser: unknown format: ${Object.keys(topLevel)[0]}`);
-  }
-
-  return result;
 }

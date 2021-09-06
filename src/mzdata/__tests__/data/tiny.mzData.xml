@@ -101,5 +101,40 @@
 				<data precision="64" endian="little" length="43">AAAAAAD+p0AAAAAAAKyTQAAAAAAAoIFAAAAAAACGokAAAAAAALiZQAAAAAAAKJhAAAAAAAAUkUAAAAAAAGiXQAAAAAAAWJFAAAAAAAB0n0AAAAAAAPyXQAAAAAAA1J5AAAAAAECn20AAAAAAAM6vQAAAAAAAwIhAAAAAAAAwo0AAAAAAAL6oQAAAAAAAJJpAAAAAAMhtCkEAAAAAwGDdQAAAAAAAAABAAAAAAACgkkAAAAAAAOSTQAAAAAAALKBAAAAAAABgqEAAAAAAgMPGQAAAAAAAmKBAAAAAAACoiUAAAAAAAMiJQAAAAAAAfrJAAAAAAAAcqUAAAAAAAEyTQAAAAAAA2blAAAAAAADCskAAAAAAAPCpQAAAAADUXxJBAAAAAMDH+EAAAAAAANCEQAAAAAAAkJ1AAAAAAABUlEAAAAAAAAyeQAAAAAAAWIVAAAAAAABgnUA=</data>
 			</intenArrayBinary>
 		</spectrum>
+		<spectrum id="30">
+			<spectrumDesc>
+				<spectrumSettings>
+					<acqSpecification spectrumType="discrete" methodOfCombination="sum" count="1">
+						<acquisition acqNumber="30"/>
+					</acqSpecification>
+					<spectrumInstrument msLevel="2" mzRangeStart="110.000000" mzRangeStop="905.000000">
+						<cvParam cvLabel="psi" accession="PSI:1000036" name="ScanMode" value="MassScan"/>
+						<cvParam cvLabel="psi" accession="PSI:1000037" name="Polarity" value="positive"/>
+						<cvParam cvLabel="psi" accession="PSI:1000038" name="TimeInMinutes" value="10"/>
+						<cvParam cvLabel="psi" accession="PSI:1000035" name="PeakProcessing" value="continuous"/>
+						<cvParam cvLabel="tmo" accession="TMO:1000001" name="Filter" value="+ c d Full ms2  445.35@cid35.00 [ 110.00-905.00]"/>
+					</spectrumInstrument>
+				</spectrumSettings>
+				<precursorList count = "1">
+					<precursor msLevel="2" spectrumRef="19">
+						<ionSelection>
+							<cvParam cvLabel="psi" accession="PSI:1000040" name="MassToChargeRatio" value="445.346680"/>
+							<cvParam cvLabel="psi" accession="PSI:1000041" name="ChargeState" value="2"/>
+							<cvParam cvLabel="psi" accession="PSI:1000041" name="ChargeState" value="3"/>
+						</ionSelection>
+						<activation>
+							<cvParam cvLabel="psi" accession="PSI:1000044" name="Method" value="CID"/>
+							<cvParam cvLabel="psi" accession="PSI:1000045" name="CollisionEnergy" value="35.00"/>
+						</activation>
+					</precursor>
+				</precursorList>
+			</spectrumDesc>
+			<mzArrayBinary>
+				<data precision="64" endian="little" length="0" />
+			</mzArrayBinary>
+			<intenArrayBinary>
+				<data precision="64" endian="little" length="0" />
+			</intenArrayBinary>
+		</spectrum
 	</spectrumList>
 </mzData>

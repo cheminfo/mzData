@@ -7,7 +7,8 @@ describe('parse', () => {
   it('from array buffer', () => {
     const data = readFileSync(
       join(__dirname, '../mzdata/__tests__/data/tiny.mzData.xml'),
-    );
+    ).buffer;
+
     let response = parseMZ(data);
     expect(response.times).toStrictEqual([5.8905, 5.944667, 10]);
     expect(response.series.ms.data).toHaveLength(3);

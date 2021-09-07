@@ -3,6 +3,7 @@ import { parseMzML } from './mzml/parseMzML';
 import { parseMzXML } from './mzxml/parseMzXML';
 
 const decoder = new TextDecoder();
+const encoder = new TextEncoder();
 
 /**
  * Reads a mzData v1.05 file
@@ -10,6 +11,15 @@ const decoder = new TextDecoder();
  * @return {{times: Array<number>, series: { ms: { data:Array<Array<number>>}}}}
  */
 export function parseMZ(xml) {
+  if (typeof xml === 'string') {
+    const encoder = new TextEncoder();
+    xml = encoder.encode(xml);
+  }
+
+  if (!ArrayBuffer.isView(xml)) {
+    xml = new Uint8Array(xml);
+  }
+
   const header = xml.subarray
     ? decoder.decode(xml.subarray(0, 200))
     : xml.substring(0, 200);

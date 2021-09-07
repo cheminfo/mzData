@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.3.1](https://www.github.com/cheminfo/mzData/compare/v2.3.0...v2.3.1) (2021-09-07)
+
+
+### Bug Fixes
+
+* correctly decode integer 64 ([eacd579](https://www.github.com/cheminfo/mzData/commit/eacd5798721d52dd1897a78dbff07e1c8515f551))
+
 ## [2.3.0](https://www.github.com/cheminfo/mzData/compare/v2.2.1...v2.3.0) (2021-09-07)
 
 

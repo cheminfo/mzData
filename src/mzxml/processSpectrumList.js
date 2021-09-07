@@ -19,7 +19,9 @@ export function processSpectrumList(parsed, times, msData) {
     msData.data.push([first, second]);
     msData.info.push(scan.attributes);
     times.push(
-      parseFloat(scan.attributes.retentionTime.replace(/(P*)(T*)(S*)/gi, '')),
+      parseFloat(
+        scan.attributes.retentionTime.replace(/(?:P*)(?:T*)(?:S*)/gi, ''),
+      ),
     );
   }
 }

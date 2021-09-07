@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.0](https://www.github.com/cheminfo/mzData/compare/v2.2.1...v2.3.0) (2021-09-07)
+
+
+### Features
+
+* update dependencies and add int 64 support ([89cbdeb](https://www.github.com/cheminfo/mzData/commit/89cbdeba177f613b9844d0d470e648877bcc61c4))
+
 ### [2.2.1](https://www.github.com/cheminfo/mzData/compare/v2.2.0...v2.2.1) (2021-09-07)
 
 

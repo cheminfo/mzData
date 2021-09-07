@@ -1,5 +1,13 @@
 # Changelog
 
+### [2.2.1](https://www.github.com/cheminfo/mzData/compare/v2.2.0...v2.2.1) (2021-09-07)
+
+
+### Bug Fixes
+
+* allow string to be parsed ([1f8580a](https://www.github.com/cheminfo/mzData/commit/1f8580a9f14dbefd0237f5e3e834295560ae5a66))
+* deal correctly with ArrayBuffer ([06dca6b](https://www.github.com/cheminfo/mzData/commit/06dca6b991588f96eee10786b37c1b439197abaa))
+
 ## [2.2.0](https://github.com/cheminfo-js/mzData/compare/v2.1.0...v2.2.0) (2021-09-07)
 
 

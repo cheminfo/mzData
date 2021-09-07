@@ -3,7 +3,6 @@ import { parseMzML } from './mzml/parseMzML';
 import { parseMzXML } from './mzxml/parseMzXML';
 
 const decoder = new TextDecoder();
-const encoder = new TextEncoder();
 
 /**
  * Reads a mzData v1.05 file

@@ -10,7 +10,9 @@ const decoder = new TextDecoder();
  * @return {{times: Array<number>, series: { ms: { data:Array<Array<number>>}}}}
  */
 export function parseMZ(xml) {
-  const header = decoder.decode(xml.subarray(0, 200));
+  const header = xml.subarray
+    ? decoder.decode(xml.subarray(0, 200))
+    : xml.substring(0, 200);
 
   if (header.includes('mzData')) {
     return parseMzData(xml);

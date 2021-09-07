@@ -90,6 +90,9 @@ export function decodeBase64(base64, options = {}) {
     switch (precision) {
       case 32:
         return new Int32Array(uint8Array.buffer, 0, uint8Array.length / 4);
+      case 64:
+        // eslint-disable-next-line no-undef
+        return new BigInt64Array(uint8Array.buffer, 0, uint8Array.length / 8);
       default:
         throw new TypeError(`Incorrect precision: ${precision}`);
     }

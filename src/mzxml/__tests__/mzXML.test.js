@@ -44,7 +44,7 @@ describe('mzXML', () => {
     const intensity = scans[0][1].reduce((a, b) => a + b);
     const mz = scans[0][0].reduce((a, b) => a + b) / scans[0][0].length;
     expect(mz).toBeWithinRange(lowMz, highMz);
-    expect(mz).toStrictEqual(0);
+    expect(mz).toBe(0);
     expect(response.series.ms.data[0][0]).toHaveLength(peaksCount0);
     expect(response.series.ms.data[1][0]).toHaveLength(peaksCount1);
     expect(intensity).toStrictEqual(-32);
@@ -57,7 +57,7 @@ describe('mzXML', () => {
       response.series.ms.info[1].peaksCount,
     );
     expect(response.series.ms.data[0][0][0]).toStrictEqual(-2);
-    expect(response.series.ms.data[0][1][0]).toStrictEqual(0);
+    expect(response.series.ms.data[0][1][0]).toBe(0);
   });
 
   it('read 64 bits mzXML test file', () => {
@@ -71,9 +71,9 @@ describe('mzXML', () => {
     const peaksCount1 = info[1].peaksCount;
     const totIonCurrent0 = scans[0][1].reduce((a, b) => a + b);
     const firstMz = scans[0][0];
-    expect(firstMz[0]).toStrictEqual(100);
+    expect(firstMz[0]).toBe(100);
     expect(firstMz[0]).toBeWithinRange(lowMz, highMz);
-    expect(totIonCurrent0).toStrictEqual(295779);
+    expect(totIonCurrent0).toBe(295779);
     expect(scans).toHaveLength(12000);
     expect(scans[0][0]).toHaveLength(peaksCount0);
     expect(scans[1][0]).toHaveLength(peaksCount1);

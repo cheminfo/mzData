@@ -35,18 +35,19 @@
     "testEnvironment": "node"
   },
   "devDependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.15.4",
+    "@babel/plugin-transform-modules-commonjs": "^7.16.8",
+    "@types/jest": "^27.4.1",
     "cheminfo-build": "^1.1.11",
-    "eslint": "^7.32.0",
-    "eslint-config-cheminfo": "^5.5.0",
-    "jest": "^27.1.1",
-    "prettier": "^2.3.2",
-    "rollup": "^2.56.3"
+    "eslint": "^8.10.0",
+    "eslint-config-cheminfo": "^7.3.0",
+    "jest": "^27.5.1",
+    "prettier": "^2.5.1",
+    "rollup": "^2.70.0"
   },
   "dependencies": {
-    "arraybuffer-xml-parser": "^0.4.0",
-    "base64-arraybuffer": "^1.0.1",
-    "camelcase": "^6.2.0",
+    "arraybuffer-xml-parser": "^0.5.0",
+    "base64-arraybuffer": "^1.0.2",
+    "camelcase": "^6.3.0",
     "pako": "^2.0.4",
     "uint8-base64": "^0.1.1"
   }

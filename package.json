@@ -36,13 +36,13 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.17.9",
-    "@types/jest": "^27.4.1",
+    "@types/jest": "^27.5.0",
     "cheminfo-build": "^1.1.11",
-    "eslint": "^8.13.0",
+    "eslint": "^8.15.0",
     "eslint-config-cheminfo": "^7.3.0",
-    "jest": "^27.5.1",
+    "jest": "^28.1.0",
     "prettier": "^2.6.2",
-    "rollup": "^2.70.1"
+    "rollup": "^2.72.1"
   },
   "dependencies": {
     "arraybuffer-xml-parser": "^0.5.0",

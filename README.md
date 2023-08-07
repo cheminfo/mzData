@@ -45,7 +45,7 @@ http://www.psidev.info/mzML
 
 [npm-image]: https://img.shields.io/npm/v/mzdata.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/mzdata
-[travis-image]: https://img.shields.io/travis/cheminfo-js/mzData/master.svg?style=flat-square
+[travis-image]: https://img.shields.io/travis/cheminfo-js/mzData/main.svg?style=flat-square
 [travis-url]: https://travis-ci.org/cheminfo-js/mzData
 [codecov-image]: https://img.shields.io/codecov/c/github/cheminfo-js/mzData.svg?style=flat-square
 [codecov-url]: https://codecov.io/github/cheminfo-js/mzData

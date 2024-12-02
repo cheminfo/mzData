@@ -1,4 +1,4 @@
-import pako from 'pako';
+import { inflate } from 'pako';
 import { decode } from 'uint8-base64';
 
 export function decodeBase64(base64, options = {}) {
@@ -28,13 +28,13 @@ export function decodeBase64(base64, options = {}) {
   let uint8Array = decode(base64);
   switch (compression.toLowerCase()) {
     case 'zlib':
-      uint8Array = pako.inflate(uint8Array);
+      uint8Array = inflate(uint8Array);
       break;
     case '':
     case 'none':
       break;
     default:
-      throw new Error(`Unknow compression algorithm: ${compression}`);
+      throw new Error(`Unknown compression algorithm: ${compression}`);
   }
 
   switch (endian.toLowerCase()) {

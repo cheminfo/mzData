@@ -1,12 +1,12 @@
 import { decode } from 'base64-arraybuffer';
-import pako from 'pako';
+import { inflate } from 'pako';
 
 export function decoder(base64Encoded, options = {}) {
   const { compressionAlgorithm } = options;
   let decoded;
   switch (compressionAlgorithm) {
     case 'zlib':
-      decoded = pako.deflate(decode(base64Encoded));
+      decoded = inflate(decode(base64Encoded));
       break;
     case undefined:
     case '':

@@ -6,6 +6,8 @@ import { processSpectrumList } from './processSpectrumList';
 
 const decoder = new TextDecoder();
 
+// https://www.psidev.info/mzml
+// CV = Controlled vocabulary
 export function parseMzML(arrayBuffer) {
   const result = {
     metadata: {},

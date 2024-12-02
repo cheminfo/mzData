@@ -1,3 +1,24 @@
+# History of formats
+
+https://dx.doi.org/10.1074/mcp.R110.000133
+
+- mzData was developed by HUPO-PSI
+  - http://psidev.info/index.php?qnode/80#mzdata
+  - https://doi.org/10.1002/pmic.200300588
+- mzXML was developed at the Institute for Systems Biology
+- mzML: new unified output format started in 2006
+
+mzML - 4 goals:
+
+- creation of a simple format
+- elimination of alternate ways to encode the same information
+- support for all the features of both mzXML and mzData
+- validation through implementation prior to release.
+
+![mzml](images/mzml.png)
+
+cv = Controlled Volabulatry
+
 # mzData
 
 [![NPM version][npm-image]][npm-url]

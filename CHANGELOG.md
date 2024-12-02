@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.2](https://github.com/cheminfo/mzData/compare/v2.3.1...v2.3.2) (2024-12-02)
+
+
+### Bug Fixes
+
+* correclty use inflate and not deflate ([baa1a4e](https://github.com/cheminfo/mzData/commit/baa1a4e044253f34be96968fff6b5b7bc862c794))
+
 ### [2.3.1](https://www.github.com/cheminfo/mzData/compare/v2.3.0...v2.3.1) (2021-09-07)
 
 

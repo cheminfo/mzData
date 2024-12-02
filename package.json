@@ -42,7 +42,6 @@
   },
   "dependencies": {
     "arraybuffer-xml-parser": "^0.6.1",
-    "base64-arraybuffer": "^1.0.2",
     "camelcase": "^6.3.0",
     "pako": "^2.1.0",
     "uint8-base64": "^0.1.1"

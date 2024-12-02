@@ -1,4 +1,5 @@
-import { decode } from 'base64-arraybuffer';
+import { decode } from 'uint8-base64';
+
 import { inflate } from 'pako';
 
 export function decoder(base64Encoded, options = {}) {
@@ -17,7 +18,7 @@ export function decoder(base64Encoded, options = {}) {
         `utils.decoder: unknown compression: ${compressionAlgorithm}`,
       );
   }
-  if (!decoded.byteLength % 8) {
+  if (decoded.byteLength % 8 !== 0) {
     throw new Error('decode to Float64Array not the right length');
   }
   return new Float64Array(decoded);

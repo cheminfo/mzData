@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/cheminfo/mzData/compare/v2.3.2...v3.0.0) (2024-12-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* make parser async and use native zlib decompression
+
+### Features
+
+* make parser async and use native zlib decompression ([17f7bcd](https://github.com/cheminfo/mzData/commit/17f7bcda45c563da3edf6c23ea0de53199b12e4d))
+
 ## [2.3.2](https://github.com/cheminfo/mzData/compare/v2.3.1...v2.3.2) (2024-12-02)
 
 

@@ -1,16 +1,13 @@
 export async function inflate(zlibCompressedData) {
-  // Strip the zlib header and footer
-  const strippedData = zlibCompressedData.subarray(2, -4); // Remove 2-byte header and 4-byte Adler-32 footer
-
   const inputStream = new ReadableStream({
     start(controller) {
-      controller.enqueue(strippedData);
+      controller.enqueue(zlibCompressedData);
       controller.close();
     },
   });
 
   const decompressedStream = inputStream.pipeThrough(
-    new DecompressionStream('deflate-raw'),
+    new DecompressionStream('deflate'),
   );
 
   const reader = decompressedStream.getReader();

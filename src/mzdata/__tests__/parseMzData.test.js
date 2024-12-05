@@ -7,9 +7,9 @@ import { parseMzData } from '../parseMzData';
 
 const pathFiles = join(__dirname, 'data');
 describe('mzData', () => {
-  it('read tiny.mzData.xml', () => {
+  it('read tiny.mzData.xml', async () => {
     const data = readFileSync(join(pathFiles, 'tiny.mzData.xml'));
-    let response = parseMzData(data);
+    let response = await parseMzData(data);
     expect(response.times).toStrictEqual([5.8905, 5.944667, 10]);
     expect(response.series.ms.data).toHaveLength(3);
 
@@ -21,9 +21,9 @@ describe('mzData', () => {
     expect(response.series.ms.data[2][1]).toHaveLength(0);
   });
 
-  it('read real file', () => {
+  it('read real file', async () => {
     const data = readFileSync(join(pathFiles, 'large.mzdata.xml'), 'utf8');
-    let response = parseMzData(data);
+    let response = await parseMzData(data);
     expect(response.times).toHaveLength(3029);
     expect(response.series.ms.data).toHaveLength(3029);
     expect(response.series.ms.data[0][0]).toHaveLength(62);

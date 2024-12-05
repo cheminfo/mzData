@@ -8,9 +8,9 @@ import { parseMzXML } from '../parseMzXML';
 const pathFiles = join(__dirname, 'data');
 
 describe('mzXML', () => {
-  it('read 32 bits mzXML test file', () => {
+  it('read 32 bits mzXML test file', async () => {
     const data = readFileSync(join(pathFiles, 'tiny2.0.mzXML'));
-    const response = parseMzXML(data);
+    const response = await parseMzXML(data);
     const scans = response.series.ms.data;
     const info = response.series.ms.info;
     const highMz = info[0].highMz;
@@ -35,9 +35,9 @@ describe('mzXML', () => {
     expect(scans[1][0]).toHaveLength(peaksCount1);
   });
 
-  it.skip('read 32 bits mzXML compressed test file', () => {
+  it.skip('read 32 bits mzXML compressed test file', async () => {
     const data = readFileSync(join(pathFiles, 'tiny3.0.mzXML'));
-    const response = parseMzXML(data);
+    const response = await parseMzXML(data);
     const scans = response.series.ms.data;
     const highMz = response.series.ms.info[0].highMz;
     const lowMz = response.series.ms.info[0].lowMz;
@@ -62,9 +62,9 @@ describe('mzXML', () => {
     expect(response.series.ms.data[0][1][0]).toBe(0);
   });
 
-  it('read 64 bits mzXML test file', () => {
+  it('read 64 bits mzXML test file', async () => {
     const data = readFileSync(join(pathFiles, 'bigTest.mzXML'));
-    const response = parseMzXML(data);
+    const response = await parseMzXML(data);
     const scans = response.series.ms.data;
     const info = response.series.ms.info;
     const highMz = info[0].highMz;

@@ -31,19 +31,20 @@
   "homepage": "https://github.com/cheminfo-js/mzData#readme",
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.25.9",
-    "@vitest/coverage-v8": "2.1.7",
+    "@vitest/coverage-v8": "2.1.8",
     "cheminfo-build": "^1.2.0",
     "eslint": "^9.16.0",
     "eslint-config-cheminfo": "^13.0.0",
     "globals": "^15.13.0",
     "prettier": "^3.4.1",
     "rollup": "^4.28.0",
-    "vitest": "^2.1.7"
+    "vitest": "^2.1.8"
   },
   "dependencies": {
-    "arraybuffer-xml-parser": "^0.6.1",
+    "arraybuffer-xml-parser": "^1.0.0",
     "camelcase": "^6.3.0",
-    "pako": "^2.1.0",
+    "cheminfo-types": "^1.8.1",
+    "ml-spectra-processing": "^14.8.0",
     "uint8-base64": "^0.1.1"
   }
 }

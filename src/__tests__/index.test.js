@@ -6,12 +6,12 @@ import { describe, it, expect } from 'vitest';
 import { parseMZ } from '..';
 
 describe('parse', () => {
-  it('from array buffer', () => {
+  it('from mzData array', async () => {
     const data = readFileSync(
       join(__dirname, '../mzdata/__tests__/data/tiny.mzData.xml'),
-    ).buffer;
+    );
 
-    let response = parseMZ(data);
+    let response = await parseMZ(data);
     expect(response.times).toStrictEqual([5.8905, 5.944667, 10]);
     expect(response.series.ms.data).toHaveLength(3);
 
@@ -23,12 +23,12 @@ describe('parse', () => {
     expect(response.series.ms.data[2][1]).toHaveLength(0);
   });
 
-  it('from text', () => {
+  it('from mzData text', async () => {
     const data = readFileSync(
       join(__dirname, '../mzdata/__tests__/data/tiny.mzData.xml'),
       'utf8',
     );
-    let response = parseMZ(data);
+    let response = await parseMZ(data);
     expect(response.times).toStrictEqual([5.8905, 5.944667, 10]);
     expect(response.series.ms.data).toHaveLength(3);
 

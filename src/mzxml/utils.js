@@ -1,13 +1,13 @@
 import { decode } from 'uint8-base64';
 
-import { inflate } from 'pako';
+import { inflate } from '../util/inflate.js';
 
-export function decoder(base64Encoded, options = {}) {
+export async function decoder(base64Encoded, options = {}) {
   const { compressionAlgorithm } = options;
   let decoded;
   switch (compressionAlgorithm) {
     case 'zlib':
-      decoded = inflate(decode(base64Encoded));
+      decoded = await inflate(decode(base64Encoded));
       break;
     case undefined:
     case '':

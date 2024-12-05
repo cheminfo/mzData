@@ -45,7 +45,7 @@ import { parseMZ } from 'mzdata';
 
 // mzData files
 const mzDataFile = readFileSync(__dirname + '/tiny.mzData.xml');
-var response = parseMZ(mzDataFile);
+var response = await parseMZ(mzDataFile);
 ```
 
 ## Ontology
@@ -57,8 +57,6 @@ var response = parseMZ(mzDataFile);
 You can find various examples files at:
 
 http://www.psidev.info/mzML
-
-## [API Documentation](https://cheminfo-js.github.io/mzData/)
 
 ## License
 

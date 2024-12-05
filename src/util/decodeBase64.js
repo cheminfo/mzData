@@ -1,7 +1,8 @@
-import { inflate } from 'pako';
 import { decode } from 'uint8-base64';
 
-export function decodeBase64(base64, options = {}) {
+import { inflate } from './inflate.js';
+
+export async function decodeBase64(base64, options = {}) {
   let {
     endian = 'little',
     precision,
@@ -28,7 +29,7 @@ export function decodeBase64(base64, options = {}) {
   let uint8Array = decode(base64);
   switch (compression.toLowerCase()) {
     case 'zlib':
-      uint8Array = inflate(uint8Array);
+      uint8Array = await inflate(uint8Array);
       break;
     case '':
     case 'none':

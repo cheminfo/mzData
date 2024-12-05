@@ -7,9 +7,10 @@ const decoder = new TextDecoder();
 /**
  * Reads a mzData v1.05 file
  * @param {ArrayBuffer|string} xml - ArrayBuffer or String or any Typed Array (including Node.js' Buffer from v4) with the data
- * @return {{times: Array<number>, series: { ms: { data:Array<Array<number>>}}}}
+ * @param {import('./Options.js').Options} [options={}]
+ * @return Promise<{{times: Array<number>, series: { ms: { data:Array<Array<number>>}}}}>
  */
-export function parseMZ(xml) {
+export async function parseMZ(xml, options = {}) {
   if (typeof xml === 'string') {
     const encoder = new TextEncoder();
     xml = encoder.encode(xml);
@@ -24,11 +25,11 @@ export function parseMZ(xml) {
     : xml.substring(0, 200);
 
   if (header.includes('mzData')) {
-    return parseMzData(xml);
+    return parseMzData(xml, options);
   } else if (header.includes('mzML')) {
-    return parseMzML(xml);
+    return parseMzML(xml, options);
   } else if (header.includes('mzXML')) {
-    return parseMzXML(xml);
+    return parseMzXML(xml, options);
   } else {
     throw new Error(`MZ parser: unknown format`);
   }

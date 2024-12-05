@@ -1,4 +1,5 @@
 import { parse } from 'arraybuffer-xml-parser';
+import { recursiveResolve } from 'ml-spectra-processing';
 
 import { decodeBase64 } from '../util/decodeBase64';
 
@@ -6,7 +7,14 @@ import { processSpectrumList } from './processSpectrumList';
 
 const decoder = new TextDecoder();
 
-export function parseMzXML(arrayBuffer) {
+/**
+ *
+ * @param {*} arrayBuffer
+ * @param {import('../Options.js').Options} [options]
+ * @returns
+ */
+export async function parseMzXML(arrayBuffer, options = {}) {
+  const { logger = console } = options;
   const result = {
     metadata: {},
     times: [],
@@ -17,17 +25,25 @@ export function parseMzXML(arrayBuffer) {
     },
   };
   let parsed = parse(arrayBuffer, {
-    attributeNamePrefix: '',
     attributesNodeName: 'attributes',
+    attributeNameProcessor: (attributeName) => attributeName,
     tagValueProcessor: (value, node) => {
       if (node.tagName !== 'peaks') return decoder.decode(value);
-      return decodeBase64(node.value, {
+
+      const promise = decodeBase64(node.bytes, {
         precision: node.attributes.precision,
         endian: node.attributes.byteOrder,
         compression: node.attributes.compressionType,
       });
+      // avoid unhandled promise rejection and swallow the error
+      promise.catch((error) => {
+        logger.error('error decoding base64', error);
+        return [];
+      });
+      return promise;
     },
   });
+  await recursiveResolve(parsed);
 
   processSpectrumList(parsed.mzXML, result.times, result.series.ms);
 

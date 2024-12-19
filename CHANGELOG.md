@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/cheminfo/mzData/compare/v3.0.0...v3.0.1) (2024-12-19)
+
+
+### Bug Fixes
+
+* explicitly add import extension ([37d24b6](https://github.com/cheminfo/mzData/commit/37d24b682ce4e9ecd493438879c98bd049da7d9c))
+
 ## [3.0.0](https://github.com/cheminfo/mzData/compare/v2.3.2...v3.0.0) (2024-12-05)
 
 

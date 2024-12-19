@@ -1,6 +1,6 @@
-import { parseMzData } from './mzdata/parseMzData';
-import { parseMzML } from './mzml/parseMzML';
-import { parseMzXML } from './mzxml/parseMzXML';
+import { parseMzData } from './mzdata/parseMzData.js';
+import { parseMzML } from './mzml/parseMzML.js';
+import { parseMzXML } from './mzxml/parseMzXML.js';
 
 const decoder = new TextDecoder();
 

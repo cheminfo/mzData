@@ -1,9 +1,9 @@
 import { parse } from 'arraybuffer-xml-parser';
 import { recursiveResolve } from 'ml-spectra-processing';
 
-import { decodeBase64 } from '../util/decodeBase64';
+import { decodeBase64 } from '../util/decodeBase64.js';
 
-import { processSpectrumList } from './processSpectrumList';
+import { processSpectrumList } from './processSpectrumList.js';
 
 const decoder = new TextDecoder();
 

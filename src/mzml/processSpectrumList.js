@@ -1,4 +1,4 @@
-import { parseCvParam } from './parseCvParam';
+import { parseCvParam } from './parseCvParam.js';
 
 export function processSpectrumList(parsed, times, msData) {
   if (

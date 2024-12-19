@@ -1,7 +1,8 @@
 import { parse } from 'arraybuffer-xml-parser';
 import { recursiveResolve } from 'ml-spectra-processing';
+import { ParallelWorkersManager } from 'parallel-workers-manager';
 
-import { decodeBase64 } from '../util/decodeBase64.js';
+import { decodeBase64 } from '../util/decodeBase64Bundle.js';
 
 import { processSpectrumList } from './processSpectrumList.js';
 
@@ -21,6 +22,8 @@ export async function parseMzML(arrayBuffer, options = {}) {
     },
   };
 
+  const manager = new ParallelWorkersManager(decodeBase64);
+
   let parsed = parse(arrayBuffer, {
     attributesNodeName: 'attributes',
     attributeNameProcessor: (attributeName) => attributeName,
@@ -29,7 +32,8 @@ export async function parseMzML(arrayBuffer, options = {}) {
       const ontologies = node.parent.children.cvParam.map(
         (entry) => entry.attributes.accession,
       );
-      const promise = decodeBase64(node.bytes, { ontologies });
+      //   const promise = decodeBase64(node.bytes, { ontologies });
+      return manager.post([node.bytes, { ontologies }]);
       // avoid unhandled promise rejection and swallow the error
       promise.catch((error) => {
         logger.error('error decoding base64', error);

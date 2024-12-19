@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.1](https://github.com/cheminfo/mzData/compare/v3.0.0...v3.0.1) (2024-12-19)
+
+
+### Bug Fixes
+
+* explicitly add import extension ([37d24b6](https://github.com/cheminfo/mzData/commit/37d24b682ce4e9ecd493438879c98bd049da7d9c))
+* update dependencies and allow bluebird promises ([1f13222](https://github.com/cheminfo/mzData/commit/1f13222bd8440a471dbfe59a5a0d0c8972c86497))
+
 ## [3.0.0](https://github.com/cheminfo/mzData/compare/v2.3.2...v3.0.0) (2024-12-05)
 
 

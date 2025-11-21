@@ -1,7 +1,7 @@
 import { parse } from 'arraybuffer-xml-parser';
 import { recursiveResolve } from 'ml-spectra-processing';
 
-import { decodeBase64 } from '../util/decodeBase64.js';
+import { decodeData } from '../util/decodeData.js';
 
 import { processMetadata } from './processMetaData.js';
 import { processSpectrumList } from './processSpectrumList.js';
@@ -31,7 +31,7 @@ export async function parseMzData(arrayBuffer, options = {}) {
     attributeNameProcessor: (attributeName) => attributeName,
     tagValueProcessor: (value, node) => {
       if (node.tagName !== 'data') return decoder.decode(value);
-      const promise = decodeBase64(node.bytes, node.attributes);
+      const promise = decodeData(node.bytes, node.attributes);
       // avoid unhandled promise rejection and swallow the error
       promise.catch((error) => {
         logger.error('error decoding base64', error);

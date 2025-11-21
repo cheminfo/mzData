@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { openAsBlob } from 'fs';
 import { join } from 'path';
 
 import { describe, expect, it } from 'vitest';
@@ -9,8 +9,10 @@ const pathFiles = join(__dirname, 'data');
 
 describe('parseMzML', () => {
   it('read tiny.mzML', async () => {
-    const data = readFileSync(join(pathFiles, 'tiny.mzML'));
-    let response = await parseMzML(data);
+    const blob = await openAsBlob(join(pathFiles, 'tiny.mzML'));
+    const arrayBuffer = await blob.arrayBuffer();
+
+    let response = await parseMzML(arrayBuffer);
     expect(response.times).toStrictEqual([5.8905, 5.9905, 42.05]);
     expect(response.series.ms.data).toHaveLength(3);
     expect(response.series.ms.data[0][0]).toHaveLength(15);
@@ -19,8 +21,10 @@ describe('parseMzML', () => {
   });
 
   it('read test.mzML', async () => {
-    const data = readFileSync(join(pathFiles, 'test.mzML'));
-    let response = await parseMzML(data);
+    const blob = await openAsBlob(join(pathFiles, 'test.mzML'));
+    const arrayBuffer = await blob.arrayBuffer();
+
+    let response = await parseMzML(arrayBuffer);
     expect(response.times).toHaveLength(1500);
     expect(response.times.slice(0, 6)).toStrictEqual([
       0, 0.2, 0.4, 0.6, 0.8, 1,
@@ -32,8 +36,9 @@ describe('parseMzML', () => {
   });
 
   it('read compressed 32bits', async () => {
-    const data = readFileSync(join(pathFiles, 'small_zlib.pwiz.1.1.mzML'));
-    let response = await parseMzML(data);
+    const blob = await openAsBlob(join(pathFiles, 'small_zlib.pwiz.1.1.mzML'));
+    const arrayBuffer = await blob.arrayBuffer();
+    let response = await parseMzML(arrayBuffer);
     expect(response.times).toHaveLength(48);
     expect(response.times.slice(0, 6)).toStrictEqual([
       0.004935, 0.007896666666666666, 0.011218333333333334,

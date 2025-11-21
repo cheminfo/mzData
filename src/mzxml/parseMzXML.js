@@ -1,7 +1,7 @@
 import { parse } from 'arraybuffer-xml-parser';
 import { recursiveResolve } from 'ml-spectra-processing';
 
-import { decodeBase64 } from '../util/decodeBase64.js';
+import { decodeData } from '../util/decodeData.js';
 
 import { processSpectrumList } from './processSpectrumList.js';
 
@@ -30,7 +30,7 @@ export async function parseMzXML(arrayBuffer, options = {}) {
     tagValueProcessor: (value, node) => {
       if (node.tagName !== 'peaks') return decoder.decode(value);
 
-      const promise = decodeBase64(node.bytes, {
+      const promise = decodeData(node.bytes, {
         precision: node.attributes.precision,
         endian: node.attributes.byteOrder,
         compression: node.attributes.compressionType,

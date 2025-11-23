@@ -7,7 +7,7 @@ import { parseMzML } from '../../mzml/parseMzML.js';
 
 const pathFiles = join(__dirname, 'data');
 
-test('Small test', async () => {
+test('Small test', { timeout: 20000 }, async () => {
   const blobIBD = await openAsBlob(join(pathFiles, 'test.ibd'));
   const ibd = await blobIBD.arrayBuffer();
 

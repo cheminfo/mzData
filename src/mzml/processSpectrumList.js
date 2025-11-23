@@ -23,7 +23,7 @@ export function processSpectrumList(parsed, times, msData) {
       throw new Error('processSpectrumList: scan may not be an array');
     }
     const cvParam = parseCvParam(scan.cvParam);
-    times.push(cvParam.scanStartTime.value);
+    times.push(cvParam['MS:1000016'].value);
 
     const dataArrayList = spectrum.binaryDataArrayList.binaryDataArray;
     if (dataArrayList.length !== 2) {
@@ -35,10 +35,12 @@ export function processSpectrumList(parsed, times, msData) {
     const second = dataArrayList[1];
     const secondCVParams = parseCvParam(second.cvParam);
 
-    if (firstCVParams.mzArray && secondCVParams.intensityArray) {
+    // MS:1000514 - m/z array
+    // MS:1000515 - intensity array
+    if (firstCVParams['MS:1000514'] && secondCVParams['MS:1000515']) {
       msData.push([first.binary, second.binary]);
     }
-    if (firstCVParams.intensityArray && secondCVParams.mzArray) {
+    if (firstCVParams['MS:1000515'] && secondCVParams['MS:1000514']) {
       msData.push([second.binary, first.binary]);
     }
   }

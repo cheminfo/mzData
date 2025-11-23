@@ -1,9 +1,7 @@
 import { parse } from 'arraybuffer-xml-parser';
-import { recursiveResolve } from 'ml-spectra-processing';
 
 import { parseCvParam } from '../mzml/parseCvParam.js';
 import { processSpectrumList } from '../mzml/processSpectrumList.js';
-import { decodeData } from '../util/decodeData.js';
 
 //import { processSpectrumList } from './processSpectrumList.js';
 
@@ -12,7 +10,6 @@ const decoder = new TextDecoder();
 // https://www.psidev.info/mzml
 // CV = Controlled vocabulary
 export async function parseImzML(imzMLBuffer, ibdBuffer, options = {}) {
-  const { logger = console } = options;
   const result = {
     metadata: {},
     times: [],

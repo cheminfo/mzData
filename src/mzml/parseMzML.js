@@ -39,17 +39,32 @@ export async function parseMzML(mzmlBuffer, options = {}) {
     attributesNodeName: 'attributes',
     attributeNameProcessor: (attributeName) => attributeName,
     tagNameProcessor: (name, nodes) => {
-      if (name !== 'referenceableParamGroupList') {
-        return name;
-      }
-      for (const group of nodes[0]?.children?.referenceableParamGroup) {
-        const id = group.attributes.id;
-        const cvParam = parseCvParam(group.children.cvParam);
-
-        referenceableParamGroups[id] = {};
-        Object.values(cvParam).map((value) => {
-          referenceableParamGroups[id][value.accession] = value.value;
-        });
+      switch (name) {
+        case 'referenceableParamGroupList':
+          for (const group of nodes[0]?.children?.referenceableParamGroup) {
+            const id = group.attributes.id;
+            referenceableParamGroups[id] = group.children;
+          }
+          break;
+        case 'referenceableParamGroupRef':
+          for (const node of nodes) {
+            // need to append the references children to the parent
+            const ref = node.attributes.ref;
+            if (referenceableParamGroups[ref]) {
+              const parent = node.parent;
+              parent.children = parent.children || {};
+              for (const key in referenceableParamGroups[ref]) {
+                parent.children[key] = parent.children[key] || [];
+                parent.children[key].push(
+                  ...referenceableParamGroups[ref][key],
+                );
+              }
+            }
+          }
+          break;
+        case 'cvParam':
+          break;
+        default:
       }
       return name;
     },

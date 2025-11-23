@@ -10,16 +10,9 @@ export function parseCvParam(cvParam) {
     cvParams = [cvParam];
   }
   for (let parameter of cvParams) {
-    let attribute = parameter.attributes;
-    if (attribute.name) {
-      result[
-        camelCase(attribute.name.toLowerCase().replace(/[^ a-z0-9]/g, ''))
-      ] = {
-        accession: attribute.accession,
-        cvLabel: attribute.cvLabel,
-        value: attribute.value,
-        name: attribute.name,
-      };
+    let attributes = parameter.attributes;
+    if (attributes.name) {
+      result[attributes.accession] = attributes;
     }
   }
   return result;

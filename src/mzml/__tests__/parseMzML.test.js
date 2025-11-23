@@ -1,4 +1,5 @@
 import { openAsBlob } from 'fs';
+import { readFile } from 'fs/promises';
 import { join } from 'path';
 
 import { describe, expect, it } from 'vitest';
@@ -13,6 +14,17 @@ describe('parseMzML', () => {
     const arrayBuffer = await blob.arrayBuffer();
 
     let response = await parseMzML(arrayBuffer);
+    expect(response.times).toStrictEqual([5.8905, 5.9905, 42.05]);
+    expect(response.series.ms.data).toHaveLength(3);
+    expect(response.series.ms.data[0][0]).toHaveLength(15);
+    expect(response.series.ms.data[1][0]).toHaveLength(10);
+    expect(response.series.ms.data[2][0]).toHaveLength(15);
+  });
+
+  it('read tiny.mzML as node blob', async () => {
+    const blob = await readFile(join(pathFiles, 'tiny.mzML'));
+
+    let response = await parseMzML(blob);
     expect(response.times).toStrictEqual([5.8905, 5.9905, 42.05]);
     expect(response.series.ms.data).toHaveLength(3);
     expect(response.series.ms.data[0][0]).toHaveLength(15);

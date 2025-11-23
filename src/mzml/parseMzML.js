@@ -12,13 +12,9 @@ const decoder = new TextDecoder();
 export async function parseMzML(mzmlBuffer, options = {}) {
   const { logger = console, rawData } = options;
 
-  if (!(mzmlBuffer instanceof ArrayBuffer)) {
-    throw new TypeError('mzmlBuffer should be an ArrayBuffer');
-  }
-
-  if (rawData && !(rawData instanceof ArrayBuffer)) {
-    throw new TypeError('rawData should be an ArrayBuffer');
-  }
+  // need to allow Buffer, ArrayBuffer or TypedArray and convert to Uint8Array
+  mzmlBuffer = new Uint8Array(mzmlBuffer);
+  rawData && (rawData = new Uint8Array(rawData));
 
   const rawDataUint8Array = rawData && new Uint8Array(rawData);
 

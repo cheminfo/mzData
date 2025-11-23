@@ -24,6 +24,8 @@ export async function parseMzML(mzmlBuffer, options = {}) {
   const result = {
     metadata: {},
     times: [],
+    xPositions: [],
+    yPositions: [],
     series: {
       ms: {
         data: [],
@@ -115,7 +117,7 @@ export async function parseMzML(mzmlBuffer, options = {}) {
 
   const mzML = parsed.mzML || parsed.indexedmzML.mzML;
 
-  processSpectrumList(mzML, result.times, result.series.ms.data);
+  processSpectrumList(mzML, result);
 
   return result;
 }

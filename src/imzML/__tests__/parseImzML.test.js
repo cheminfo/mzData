@@ -17,6 +17,10 @@ test('Small test', { timeout: 20000 }, async () => {
   let response = await parseMzML(imzML, { rawData: ibd });
 
   expect(response.times).toHaveLength(15496);
+  expect(response.xPositions).toHaveLength(15496);
+  console.log(response.xPositions.slice(100));
+  console.log(response.yPositions);
+  expect(response.yPositions).toHaveLength(15496);
 
   expect(response.series.ms.data).toHaveLength(15496);
   expect(response.series.ms.data[0][0]).toHaveLength(475);

@@ -1,6 +1,6 @@
 import { parseCvParam } from './parseCvParam.js';
 
-export function processSpectrumList(parsed, times, msData) {
+export function processSpectrumList(parsed, result) {
   if (
     !parsed ||
     !parsed.run ||
@@ -10,6 +10,7 @@ export function processSpectrumList(parsed, times, msData) {
     return;
   }
   let spectrumList = parsed.run.spectrumList.spectrum;
+  const msData = result.series.ms.data;
 
   for (let spectrum of spectrumList) {
     if (!spectrum.binaryDataArrayList) continue;
@@ -23,7 +24,9 @@ export function processSpectrumList(parsed, times, msData) {
       throw new Error('processSpectrumList: scan may not be an array');
     }
     const cvParam = parseCvParam(scan.cvParam);
-    times.push(cvParam['MS:1000016'].value);
+    result.times.push(cvParam['MS:1000016']?.value);
+    result.xPositions.push(cvParam['IMS:1000050']?.value);
+    result.yPositions.push(cvParam['IMS:1000051']?.value);
 
     const dataArrayList = spectrum.binaryDataArrayList.binaryDataArray;
     if (dataArrayList.length !== 2) {

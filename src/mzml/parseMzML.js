@@ -3,7 +3,6 @@ import { recursiveResolve } from 'ml-spectra-processing';
 
 import { decodeData } from '../util/decodeData.js';
 
-import { parseCvParam } from './parseCvParam.js';
 import { processSpectrumList } from './processSpectrumList.js';
 
 const decoder = new TextDecoder();
@@ -41,9 +40,12 @@ export async function parseMzML(mzmlBuffer, options = {}) {
     tagNameProcessor: (name, nodes) => {
       switch (name) {
         case 'referenceableParamGroupList':
-          for (const group of nodes[0]?.children?.referenceableParamGroup) {
-            const id = group.attributes.id;
-            referenceableParamGroups[id] = group.children;
+          {
+            const children = nodes[0]?.children?.referenceableParamGroup;
+            for (const group of children) {
+              const id = group.attributes?.id;
+              referenceableParamGroups[id] = group.children;
+            }
           }
           break;
         case 'referenceableParamGroupRef':

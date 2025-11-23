@@ -1,4 +1,4 @@
-import { openAsBlob, readFileSync } from 'fs';
+import { openAsBlob } from 'fs';
 import { join } from 'path';
 
 import { expect, test } from 'vitest';

@@ -1,5 +1,3 @@
-import camelCase from 'camelcase';
-
 export function parseCvParam(cvParam) {
   let result = {};
   if (!cvParam) return result;

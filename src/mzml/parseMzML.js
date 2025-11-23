@@ -10,11 +10,14 @@ const decoder = new TextDecoder();
 // https://www.psidev.info/mzml
 // CV = Controlled vocabulary
 export async function parseMzML(mzmlBuffer, options = {}) {
-  const { logger = console, rawData } = options;
+  const { logger = console } = options;
+  let { rawData } = options;
 
   // need to allow Buffer, ArrayBuffer or TypedArray and convert to Uint8Array
   mzmlBuffer = new Uint8Array(mzmlBuffer);
-  rawData && (rawData = new Uint8Array(rawData));
+  if (rawData) {
+    rawData = new Uint8Array(rawData);
+  }
 
   const rawDataUint8Array = rawData && new Uint8Array(rawData);
 

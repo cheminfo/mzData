@@ -1,6 +1,6 @@
 {
   "name": "mzdata",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "Read and explore mzData v1.05 files",
   "main": "lib/index.js",
   "module": "src/index.js",

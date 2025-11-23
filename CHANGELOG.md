@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.1.0](https://github.com/cheminfo/mzData/compare/v4.0.0...v4.1.0) (2025-11-23)
+
+
+### Features
+
+* add xPositions and yPositions ([55ad480](https://github.com/cheminfo/mzData/commit/55ad48076c0cbd5e7c81771e841b1a78284f15b8))
+
+
+### Bug Fixes
+
+* allow uint8array and node buffer ([5a1c2a7](https://github.com/cheminfo/mzData/commit/5a1c2a7cdab0eb8bec8958d7e7147a50a94d2196))
+
 ## [4.0.0](https://github.com/cheminfo/mzData/compare/v3.0.0...v4.0.0) (2025-11-23)
 
 

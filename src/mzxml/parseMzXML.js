@@ -1,5 +1,5 @@
 import { parse } from 'arraybuffer-xml-parser';
-import { recursiveResolve } from 'ml-spectra-processing';
+import { recursiveResolve } from 'ml-spectra-processing/utils';
 
 import { decodeData } from '../util/decodeData.js';
 

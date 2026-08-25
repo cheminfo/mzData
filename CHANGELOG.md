@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.1](https://github.com/cheminfo/mzData/compare/v4.1.0...v4.1.1) (2026-08-25)
+
+
+### Performance Improvements
+
+* drive DecompressionStream directly and bound concurrency ([82f33c1](https://github.com/cheminfo/mzData/commit/82f33c18c70a33a1c2e4b22674c7f15f9075c47e))
+
 ## [4.1.0](https://github.com/cheminfo/mzData/compare/v4.0.0...v4.1.0) (2026-07-06)
 
 

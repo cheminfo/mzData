@@ -1,11 +1,11 @@
-import { openAsBlob } from 'fs';
-import { join } from 'path';
+import { openAsBlob } from 'node:fs';
+import { join } from 'node:path';
 
 import { expect, test } from 'vitest';
 
 import { parseMzML } from '../../mzml/parseMzML.js';
 
-const pathFiles = join(__dirname, 'data');
+const pathFiles = join(import.meta.dirname, 'data');
 
 test('Small test', { timeout: 20000 }, async () => {
   const blobIBD = await openAsBlob(join(pathFiles, 'test.ibd'));

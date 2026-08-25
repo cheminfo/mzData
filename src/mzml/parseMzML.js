@@ -40,15 +40,14 @@ export async function parseMzML(mzmlBuffer, options = {}) {
     attributeNameProcessor: (attributeName) => attributeName,
     tagNameProcessor: (name, nodes) => {
       switch (name) {
-        case 'referenceableParamGroupList':
-          {
-            const children = nodes[0]?.children?.referenceableParamGroup;
-            for (const group of children) {
-              const id = group.attributes?.id;
-              referenceableParamGroups[id] = group.children;
-            }
+        case 'referenceableParamGroupList': {
+          const children = nodes[0]?.children?.referenceableParamGroup;
+          for (const group of children) {
+            const id = group.attributes?.id;
+            referenceableParamGroups[id] = group.children;
           }
           break;
+        }
         case 'referenceableParamGroupRef':
           for (const node of nodes) {
             // need to append the references children to the parent
@@ -78,20 +77,20 @@ export async function parseMzML(mzmlBuffer, options = {}) {
           (ref) => ref.attributes.ref,
         ) || [];
       const ontologies = {};
-      referenceableParamGroupRefs.forEach((ref) => {
+      for (const ref of referenceableParamGroupRefs) {
         if (referenceableParamGroups[ref]) {
           Object.assign(ontologies, referenceableParamGroups[ref]);
         }
-      });
-      node.parent.children.cvParam.forEach((cv) => {
+      }
+      for (const cv of node.parent.children.cvParam) {
         ontologies[cv.attributes.accession] = cv.attributes.value;
-      });
+      }
 
       let promise;
       if ('IMS:1000102' in ontologies) {
         // external data offset
-        const offset = parseInt(ontologies['IMS:1000102'], 10);
-        const encodedLength = parseInt(ontologies['IMS:1000104'], 10);
+        const offset = Number.parseInt(ontologies['IMS:1000102'], 10);
+        const encodedLength = Number.parseInt(ontologies['IMS:1000104'], 10);
 
         promise = decodeData(
           rawDataUint8Array.subarray(offset, offset + encodedLength),

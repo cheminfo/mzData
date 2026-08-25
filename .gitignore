@@ -45,3 +45,6 @@ dist/
 # Mac specific ignore
 .DS_Store
 scripts/huge.mzML
+
+# Claude Code
+.claude

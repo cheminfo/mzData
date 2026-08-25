@@ -1,10 +1,9 @@
-// need to `npm run prepack`
 // need a 'huge.mzML' file in the same folder
 
-import { openAsBlob } from 'fs';
-import { join } from 'path';
+import { openAsBlob } from 'node:fs';
+import { join } from 'node:path';
 
-import { parseMZ } from '../lib/index.js';
+import { parseMZ } from '../src/index.js';
 
 const xml = await openAsBlob(join(import.meta.dirname, 'huge.mzML'));
 

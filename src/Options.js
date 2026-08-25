@@ -1,5 +1,5 @@
 /**
- * @typedef {Object} Options
+ * @typedef {object} Options
  * @property {import('cheminfo-types').Logger} [logger] - A potential logger
  */
 

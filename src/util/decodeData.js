@@ -47,29 +47,28 @@ export async function decodeData(data, options = {}) {
     case 'little':
       break;
     case 'network':
-    case 'big':
-      {
-        // we will invert in place the data
-        let step;
-        switch (precision) {
-          case 32:
-            step = 4;
-            break;
-          case 64:
-            step = 8;
-            break;
-          default:
-            throw new Error('Can not process bigendian file');
-        }
-        for (let i = 0; i < data.length - (data.length % step); i += step) {
-          for (let j = 0; j < step / 2; j++) {
-            const temp = data[i + j];
-            data[i + j] = data[i + step - 1 - j];
-            data[i + step - 1 - j] = temp;
-          }
+    case 'big': {
+      // we will invert in place the data
+      let step;
+      switch (precision) {
+        case 32:
+          step = 4;
+          break;
+        case 64:
+          step = 8;
+          break;
+        default:
+          throw new Error('Can not process bigendian file');
+      }
+      for (let i = 0; i < data.length - (data.length % step); i += step) {
+        for (let j = 0; j < step / 2; j++) {
+          const temp = data[i + j];
+          data[i + j] = data[i + step - 1 - j];
+          data[i + step - 1 - j] = temp;
         }
       }
       break;
+    }
     default:
       throw new TypeError(`Attributes endian not correct: ${endian}`);
   }

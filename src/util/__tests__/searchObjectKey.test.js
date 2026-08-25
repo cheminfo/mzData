@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 
-import { searchObjectKey } from '../searchObjectKey';
+import { searchObjectKey } from '../searchObjectKey.js';
 
 test('searchObjectKey', () => {
   const object = {
